@@ -14,11 +14,12 @@ return(
 <View style={{width:'75%'}}>
 <TextInput 
 mode={'outlined'}
+style={{height:35,fontSize:12}}
 activeOutlineColor='#00ADB5'
 keyboardType='numeric'
       label={label}
       value={text}
-      onChangeText={text => setText(text)}
+      onChangeText={text => setText(parseFloat(text))}
    / ></View>
 <View style={{width:'15%',marginLeft:3}}>
 <DropDownPicker 
@@ -29,17 +30,16 @@ keyboardType='numeric'
       setOpen={setOpen}
       setValue={setValue}
       setItems={setItems}
-      placeholder={"lb"}
+      placeholder={"kg"}
       containerStyle={{width:35}}
       showArrowIcon={false}
       showTickIcon={false}
       listMode={"SCROLLVIEW"}
       style={{
-  backgroundColor: "#99C4C8",
-}}
+  backgroundColor: "#99C4C8",position:'relative'}}
 
       textStyle={{
-  fontSize: 12,color: "black",
+  fontSize: 10,color: "black",
 }}
 dropDownContainerStyle={{
   backgroundColor: "#dfdfdf"

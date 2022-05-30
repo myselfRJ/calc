@@ -2,25 +2,28 @@ import * as React from 'react';
 import {StyleSheet,View} from 'react-native';
 import { TextInput } from 'react-native-paper';
 import DropDownPicker from 'react-native-dropdown-picker';
-const ConcretePart1 = ({text,label,value,setText,setValue,open,setOpen,view}) => {
+const ConcretePart1 = ({text,left,right,label,value,setText,setValue,open,setOpen,view,setCalc}) => {
 
     
     const [items, setItems] = React.useState([
       {label:'m\u00B3', value: '1'},
-      {label: 'ft\u00B3', value: '10'},
-      {label: 'yrd\u00B3', value: '100'},
-      {label: 'brass', value: '1000'}
+      {label: 'ft\u00B3', value: '0.0283168'},
+      {label: 'yrd\u00B3', value: '0.764555'},
+      {label: 'brass', value: '2.831 '}
     ]);
 return(
 <View style={{display:'flex',flexDirection:'row',width:view,justifyContent:'flex-start',alignItems:'center'}}>
 <View style={{width:'72%'}}>
 <TextInput 
 mode={'outlined'}
+style={{height:35,fontSize:12}}
+right={right?<TextInput.Affix text={right} />:''}
+left={left?<TextInput.Affix text={left} />:''}
 activeOutlineColor='#00ADB5'
 keyboardType='numeric'
       label={label}
       value={text}
-      onChangeText={text => setText(text)}
+      onChangeText={text => {setText(parseFloat(text));setCalc(text*items.value);console.log(text*items.value)}}
    / ></View>
 <View style={{width:'18%',marginLeft:3}}>
 <DropDownPicker 
@@ -41,7 +44,7 @@ keyboardType='numeric'
 }}
 
       textStyle={{
-  fontSize: 12,color: "black",
+  fontSize: 10,color: "black",
 }}
 dropDownContainerStyle={{
   backgroundColor: "#dfdfdf"

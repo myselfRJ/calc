@@ -9,13 +9,27 @@ import Share from 'react-native-share';
 
 const Concrete1 = ({route,navigation}) => {
   const viewShot = React.useRef();
-  const [text, setText] = React.useState("");
+  const [volume, setVolume] = React.useState("5");
+  const [calcvolume, setcalcVolume] = React.useState("5");
+  const [cement, setCement] = React.useState("1");
+  const [sand, setSand] = React.useState("2");
+  const [aggregate, setAggregate] = React.useState("4");
+  const [cementbag, setCementbag] = React.useState("50");
+  const [calccementbag, setcalcCementbag] = React.useState("50");
+  const [concreteprice, setConcretePrice] = React.useState("0");
+  const [calcconcreteprice, setcalcConcretePrice] = React.useState("0");
+  const [dryvolume, setDryVolume] = React.useState('1.54');
+  const [quantity, setQuantity] = React.useState("1");
+  const [cementbagprice, setCementbagprice] = React.useState("0");
+  const [cementratio, setCementratio] = React.useState("0.5");
+
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState(null);
     const [text2, setText2] = React.useState("");
     const [open2, setOpen2] = React.useState(false);
     const [value2, setValue2] = React.useState(null);
     const [toggle, setToggle] = React.useState('m');
+
     const { title } = route.params;
     const [text1, setText1] = React.useState("");
     const captureAndShareScreenshot = () => {
@@ -38,7 +52,7 @@ const Concrete1 = ({route,navigation}) => {
         });
       });
     };
-return(<ScrollView>
+return(<ScrollView style={{backgroundColor: '#DDDDDD',height:'100%'}}>
 <ViewShot
         style={styles.container}
         ref={viewShot}
@@ -54,79 +68,79 @@ return(<ScrollView>
 
 </TouchableOpacity>
 <View style={{marginBottom:10,justifyContent:'center',width:'100%'}}>
-<ConcretePart1 label={"Concrete Volume"} value={value}text={text}open={open}setOpen={setOpen} setText={setText} setValue={setValue}/>
+<ConcretePart1 label={"Concrete Volume"} value={value} text={volume} open={open} setOpen={setOpen} setText={setVolume} setValue={setValue} setCalc={setcalcVolume}/>
 </View>
 <Divider style={{borderWidth:1,width:'100%',zIndex:-1,marginBottom:5}} />
 <View style={{display:'flex',flexDirection:'column',width:'100%',zIndex:-1}}>
     <Text style={{color:'#00ADB5'}}>Concrete Ratio :</Text>
     <View style={{display:'flex',flexDirection:'row',width:'100%',justifyContent:'space-between'}}>
-    <TextInput style={{width:'30%',}} 
+    <TextInput  style={{width:'30%',height:35,fontSize:12}} 
 mode={'outlined'}
 activeOutlineColor='#00ADB5'
 
 keyboardType='numeric'
       label={'Cement'}
-      value={text}
-      onChangeText={text => setText1(text)}
+      value={cement}
+      onChangeText={text => setCement(parseFloat(text))}
    / >
-   <TextInput style={{width:'30%'}}
+   <TextInput style={{width:'30%',height:35,fontSize:12}}
 mode={'outlined'}
 activeOutlineColor='#00ADB5'
 keyboardType='numeric'
       label={'Sand'}
-      value={text}
-      onChangeText={text => setText1(text)}
+      value={sand}
+      onChangeText={text => setSand(parseFloat(text))}
    / >
-   <TextInput style={{width:'30%'}}
+   <TextInput style={{width:'30%',height:35,fontSize:12}}
 mode={'outlined'}
 activeOutlineColor='#00ADB5'
 keyboardType='numeric'
       label={'Aggregate'}
-      value={text1}
-      onChangeText={text => setText1(text)}
+      value={aggregate}
+      onChangeText={text => setAggregate(parseFloat(text))}
    / >
     </View>
-    <Divider style={{width:'100%',marginTop:5}}/>
+    <Divider style={{width:'150%',marginTop:5}}/>
     <View style={{display:'flex',flexDirection:'row',width:'100%',justifyContent:'space-between'}}>
-<WeightView label={"1 Cement Bag"}text={text2}open={open2} value={value2}setOpen={setOpen2} setText={setText2} setValue={setValue2}view={'50%'}/>
-<ConcretePart1 label={"Concrete Price"} value={value}text={text}open={open}setOpen={setOpen} setText={setText} setValue={setValue}view={'50%'}/>
+<WeightView label={"1 Cement Bag"}text={cementbag}open={open2} value={value2}setOpen={setOpen2} setText={setCementbag} setValue={setValue2}view={'50%'}/>
+<ConcretePart1 label={"Concrete Price"}right={'per/'} value={value}text={concreteprice}open={open}setOpen={setOpen} setText={setConcretePrice} setValue={setValue}view={'50%'}/>
 </View>
 <Divider style={{width:'100%',marginTop:5}}/>
 <View style={{display:'flex',flexDirection:'row',width:'100%',justifyContent:'space-between'}}>
-<TextInput style={{width:'47%'}}
+<TextInput style={{width:'47%',height:35,fontSize:12}}
 mode={'outlined'}
 activeOutlineColor='#00ADB5'
 keyboardType='numeric'
       label={'Dry Volume'}
-      value={text1}
-      onChangeText={text => setText1(text)}
+      value={dryvolume}
+      onChangeText={text => setDryVolume(parseFloat(text))}
    / >
-   <TextInput style={{width:'47%'}}
+   <TextInput style={{width:'47%',height:35,fontSize:12}}
 mode={'outlined'}
 activeOutlineColor='#00ADB5'
 keyboardType='numeric'
       label={'Quantity'}
-      value={text1}
-      onChangeText={text => setText1(text)}
+      value={quantity}
+      onChangeText={text => setQuantity(parseFloat(text))}
    / >
 </View>
 <Divider style={{width:'100%',marginTop:5}}/>
 <View style={{display:'flex',flexDirection:'row',width:'100%',justifyContent:'space-between'}}>
-<TextInput style={{width:'47%'}}
+<TextInput style={{width:'47%',height:35,fontSize:12}}
 mode={'outlined'}
 activeOutlineColor='#00ADB5'
 keyboardType='numeric'
       label={'Cement Bag Price'}
-      value={text1}
-      onChangeText={text => setText1(text)}
+      value={cementbagprice}
+      onChangeText={text => setCementbagprice(parseFloat(text))}
    / >
-   <TextInput style={{width:'47%'}}
+   <TextInput style={{width:'47%',height:35,fontSize:12}}
 mode={'outlined'}
 activeOutlineColor='#00ADB5'
 keyboardType='numeric'
-      label={'Cement Ratio'}
-      value={text1}
-      onChangeText={text => setText1(text)}
+      label={'Water Cement Ratio'}
+      value={cementratio}
+      onChangeText={text => setCementratio(parseFloat(text))}
    / >
 </View>
 <Divider style={{width:'100%',marginTop:10,borderWidth:1,marginBottom:10}}/>
@@ -134,7 +148,7 @@ keyboardType='numeric'
 <Button compact={true} style={{backgroundColor:'#6FDFDF'}} icon="camera" mode="contained" onPress={() => captureAndShareScreenshot()}>
     Share
   </Button>
-  <Button compact={true} style={{backgroundColor:'#00ADB5',}}icon="calculator" mode="contained" onPress={() => console.log('Pressed')}>
+  <Button compact={true} style={{backgroundColor:'#00ADB5',}}icon="calculator" mode="contained" onPress={() => {if(volume&cement&sand&aggregate&quantity&cementbag&cementratio){setToggle('m');}}}>
     Calculate
   </Button>
   <Button compact={true} style={{backgroundColor:'#6FDFDF'}} icon="backup-restore" mode="contained" onPress={() => console.log('Pressed')}>
@@ -143,7 +157,7 @@ keyboardType='numeric'
 </View>
 <Divider style={{width:'100%',marginTop:10,marginBottom:10}}/>
 <View style={{display:'flex',flexDirection:'row',width:'100%',justifyContent:'space-around'}}>
-<DataTable style={{backgroundColor:'#EFFFFD'}}>
+{toggle==='m'?<DataTable style={{backgroundColor:'#EFFFFD'}}>
       <DataTable.Header>
         <DataTable.Title  sortDirection='descending'>Material</DataTable.Title>
         <DataTable.Title numeric>Quantity</DataTable.Title>
@@ -152,65 +166,296 @@ keyboardType='numeric'
 
       <DataTable.Row>
         <DataTable.Cell>Volume</DataTable.Cell>
-        <DataTable.Cell numeric>159</DataTable.Cell>
+        <DataTable.Cell numeric>{calcvolume}</DataTable.Cell>
         <DataTable.Cell numeric>{'m\u00B3'}</DataTable.Cell>
       </DataTable.Row>
 
       <DataTable.Row>
         <DataTable.Cell>Dry Volume</DataTable.Cell>
-        <DataTable.Cell numeric>237</DataTable.Cell>
+        <DataTable.Cell numeric>{dryvolume*volume}</DataTable.Cell>
+        <DataTable.Cell numeric>{'m\u00B3'}</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Cement Weight</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement*1440)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
         <DataTable.Cell numeric>kg</DataTable.Cell>
       </DataTable.Row>
 
       <DataTable.Row>
-        <DataTable.Cell>Dry Volume</DataTable.Cell>
-        <DataTable.Cell numeric>237</DataTable.Cell>
+        <DataTable.Cell>Cement</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>{'m\u00B3'}</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Sand</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*sand)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>{'m\u00B3'}</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Aggregate</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*aggregate)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>{'m\u00B3'}</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Water</DataTable.Cell>
+        <DataTable.Cell numeric>{cementratio*((dryvolume*volume*cement*1440)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>Liter</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Cement Bags</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement*1440)/((parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))*cementbag)).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>bags</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Cement Bag Cost</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement*1440*cementbagprice)/((parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))*cementbag)).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>$</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Concrete Cost</DataTable.Cell>
+        <DataTable.Cell numeric>{volume*concreteprice}</DataTable.Cell>
+        <DataTable.Cell numeric>$</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Concrete Weight</DataTable.Cell>
+        <DataTable.Cell numeric>{volume*2400}</DataTable.Cell>
         <DataTable.Cell numeric>kg</DataTable.Cell>
+      </DataTable.Row>
+</DataTable>:<></>}
+{toggle==='ft'?<DataTable style={{backgroundColor:'#EFFFFD'}}>
+      <DataTable.Header>
+        <DataTable.Title  sortDirection='descending'>Material</DataTable.Title>
+        <DataTable.Title numeric>Quantity</DataTable.Title>
+        <DataTable.Title numeric>Unit</DataTable.Title>
+      </DataTable.Header>
+
+      <DataTable.Row>
+        <DataTable.Cell>Volume</DataTable.Cell>
+        <DataTable.Cell numeric>{(volume*35.3147).toFixed(3)}</DataTable.Cell>
+        <DataTable.Cell numeric>{'ft\u00B3'}</DataTable.Cell>
       </DataTable.Row>
 
       <DataTable.Row>
         <DataTable.Cell>Dry Volume</DataTable.Cell>
-        <DataTable.Cell numeric>237</DataTable.Cell>
-        <DataTable.Cell numeric>kg</DataTable.Cell>
+        <DataTable.Cell numeric>{(dryvolume*volume*35.3147).toFixed(3)}</DataTable.Cell>
+        <DataTable.Cell numeric>{'ft\u00B3'}</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Cement Weight</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement*1440*2.20462)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>lb</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Cement</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement*35.3147)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>{'ft\u00B3'}</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Sand</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*sand*35.3147)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>{'ft\u00B3'}</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Aggregate</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*aggregate)*35.3147/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>{'ft\u00B3'}</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Water</DataTable.Cell>
+        <DataTable.Cell numeric>{cementratio*((dryvolume*volume*cement*1440)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>Liter</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Cement Bags</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement*1440)/((parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))*cementbag)).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>bags</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Cement Bag Cost</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement*1440*cementbagprice)/((parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))*cementbag)).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>$</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Concrete Cost</DataTable.Cell>
+        <DataTable.Cell numeric>{volume*concreteprice}</DataTable.Cell>
+        <DataTable.Cell numeric>$</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Concrete Weight</DataTable.Cell>
+        <DataTable.Cell numeric>{(volume*2400*2.20462).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>lb</DataTable.Cell>
+      </DataTable.Row>
+</DataTable>:<></>}
+{toggle==='yrd'?<DataTable style={{backgroundColor:'#EFFFFD'}}>
+      <DataTable.Header>
+        <DataTable.Title  sortDirection='descending'>Material</DataTable.Title>
+        <DataTable.Title numeric>Quantity</DataTable.Title>
+        <DataTable.Title numeric>Unit</DataTable.Title>
+      </DataTable.Header>
+
+      <DataTable.Row>
+        <DataTable.Cell>Volume</DataTable.Cell>
+        <DataTable.Cell numeric>{(volume*1.30795).toFixed(3)}</DataTable.Cell>
+        <DataTable.Cell numeric>{'yrd\u00B3'}</DataTable.Cell>
       </DataTable.Row>
 
       <DataTable.Row>
         <DataTable.Cell>Dry Volume</DataTable.Cell>
-        <DataTable.Cell numeric>237</DataTable.Cell>
+        <DataTable.Cell numeric>{(dryvolume*volume*1.30795).toFixed(3)}</DataTable.Cell>
+        <DataTable.Cell numeric>{'yrd\u00B3'}</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Cement Weight</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement*1440)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
         <DataTable.Cell numeric>kg</DataTable.Cell>
       </DataTable.Row>
 
       <DataTable.Row>
-        <DataTable.Cell>Dry Volume</DataTable.Cell>
-        <DataTable.Cell numeric>237</DataTable.Cell>
+        <DataTable.Cell>Cement</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement*1.30795)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>{'yrd\u00B3'}</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Sand</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*sand*1.30795)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>{'yrd\u00B3'}</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Aggregate</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*aggregate*1.30795)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>{'yrd\u00B3'}</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Water</DataTable.Cell>
+        <DataTable.Cell numeric>{cementratio*((dryvolume*volume*cement*1440)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>Liter</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Cement Bags</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement*1440)/((parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))*cementbag)).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>bags</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Cement Bag Cost</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement*1440*cementbagprice)/((parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))*cementbag)).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>$</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Concrete Cost</DataTable.Cell>
+        <DataTable.Cell numeric>{volume*concreteprice}</DataTable.Cell>
+        <DataTable.Cell numeric>$</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Concrete Weight</DataTable.Cell>
+        <DataTable.Cell numeric>{volume*2400}</DataTable.Cell>
         <DataTable.Cell numeric>kg</DataTable.Cell>
+      </DataTable.Row>
+</DataTable>:<></>}
+{toggle==='brass'?<DataTable style={{backgroundColor:'#EFFFFD'}}>
+      <DataTable.Header>
+        <DataTable.Title  sortDirection='descending'>Material</DataTable.Title>
+        <DataTable.Title numeric>Quantity</DataTable.Title>
+        <DataTable.Title numeric>Unit</DataTable.Title>
+      </DataTable.Header>
+
+      <DataTable.Row>
+        <DataTable.Cell>Volume</DataTable.Cell>
+        <DataTable.Cell numeric>{(volume*0.353).toFixed(3)}</DataTable.Cell>
+        <DataTable.Cell numeric>{'brass'}</DataTable.Cell>
       </DataTable.Row>
 
       <DataTable.Row>
         <DataTable.Cell>Dry Volume</DataTable.Cell>
-        <DataTable.Cell numeric>237</DataTable.Cell>
-        <DataTable.Cell numeric>kg</DataTable.Cell>
+        <DataTable.Cell numeric>{(dryvolume*volume*0.353).toFixed(3)}</DataTable.Cell>
+        <DataTable.Cell numeric>{'brass'}</DataTable.Cell>
       </DataTable.Row>
 
       <DataTable.Row>
-        <DataTable.Cell>Dry Volume</DataTable.Cell>
-        <DataTable.Cell numeric>237</DataTable.Cell>
-        <DataTable.Cell numeric>kg</DataTable.Cell>
+        <DataTable.Cell>Cement Weight</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement*1440/1000)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>ton</DataTable.Cell>
       </DataTable.Row>
 
       <DataTable.Row>
-        <DataTable.Cell>Dry Volume</DataTable.Cell>
-        <DataTable.Cell numeric>237</DataTable.Cell>
-        <DataTable.Cell numeric>kg</DataTable.Cell>
+        <DataTable.Cell>Cement</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement*0.353)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>{'brass'}</DataTable.Cell>
       </DataTable.Row>
-</DataTable>
+
+      <DataTable.Row>
+        <DataTable.Cell>Sand</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*sand*0.353)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>{'brass'}</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Aggregate</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*aggregate)*0.353/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>{'brass'}</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Water</DataTable.Cell>
+        <DataTable.Cell numeric>{cementratio*((dryvolume*volume*cement*1440)/(parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>Liter</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Cement Bags</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement*1440)/((parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))*cementbag)).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>bags</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Cement Bag Cost</DataTable.Cell>
+        <DataTable.Cell numeric>{((dryvolume*volume*cement*1440*cementbagprice)/((parseFloat(cement)+parseFloat(sand)+parseFloat(aggregate))*cementbag)).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>$</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Concrete Cost</DataTable.Cell>
+        <DataTable.Cell numeric>{volume*concreteprice}</DataTable.Cell>
+        <DataTable.Cell numeric>$</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>Concrete Weight</DataTable.Cell>
+        <DataTable.Cell numeric>{(volume*2400/1000).toFixed(3).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')}</DataTable.Cell>
+        <DataTable.Cell numeric>ton</DataTable.Cell>
+      </DataTable.Row>
+</DataTable>:<></>}
 </View>
 <View style={{display:'flex',flexDirection:'row',width:'100%',justifyContent:'space-around'}}>
 <ToggleButton.Row style={{width:'100%',justifyContent:'center'}}  onValueChange={toggle => setToggle(toggle)} value={toggle}>
       <ToggleButton icon={require('../resources/images/meter.png')}  color='#00ADB5' value="m" />
-      <ToggleButton icon={require('../resources/images/foot.png')} color='#00ADB5'value="ft" />
-      <ToggleButton icon={require('../resources/images/yard.png')} color='#00ADB5'value="yrd" />
-      <ToggleButton icon={require('../resources/images/brass.png')} color='#00ADB5'value="brass" />
+      <ToggleButton icon={require('../resources/images/foot.png')} color='#00ADB5' value="ft" />
+      <ToggleButton icon={require('../resources/images/yard.png')} color='#00ADB5' value="yrd" />
+      <ToggleButton icon={require('../resources/images/brass.png')} color='#00ADB5' value="brass" />
     </ToggleButton.Row>
     </View>
 </View>
