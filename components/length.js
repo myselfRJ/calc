@@ -2,12 +2,16 @@ import * as React from 'react';
 import {StyleSheet,View} from 'react-native';
 import { TextInput } from 'react-native-paper';
 import DropDownPicker from 'react-native-dropdown-picker';
-const WeightView = ({text,label,value,setText,setValue,open,setOpen,view}) => {
+const LengthView = ({text,label,value,setText,setValue,open,setOpen,view}) => {
 
     
     const [items, setItems] = React.useState([
-      {label:'lb', value: '0.453592'},
-      {label: 'kg', value: '1'},
+        {label: 'mm', value: '0.001'},
+        {label: 'cm', value: '0.01'},
+        {label: 'inch', value: '0.0254'},
+      {label:'m', value: '1'},
+      {label: 'ft', value: '0.304'},
+      {label: 'yrd', value: '0.914'},
     ]);
 return(
 <View style={{display:'flex',flexDirection:'row',width:view,justifyContent:'flex-start',alignItems:'center'}}>
@@ -30,13 +34,13 @@ keyboardType='numeric'
       setOpen={setOpen}
       setValue={setValue}
       setItems={setItems}
-      placeholder={"kg"}
-      containerStyle={{width:35}}
+      placeholder={"mm"}
+      containerStyle={{width:45}}
       showArrowIcon={false}
       showTickIcon={false}
       listMode={"SCROLLVIEW"}
       style={{
-  backgroundColor: "#99C4C8",position:'relative'}}
+  backgroundColor: "#99C4C8",position:'relative',zIndex:999}}
 
       textStyle={{
   fontSize: 10,color: "black",
@@ -65,4 +69,4 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
 });
-export default WeightView;
+export default LengthView;

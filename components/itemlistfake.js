@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {TouchableOpacity,StyleSheet,Image,Text} from 'react-native'
 
-const ItemList = (props) => {
+const ItemListFake = (props) => {
     console.log(props)
 return(
-<TouchableOpacity  style={{...styles.card}} onPress={()=>props.navigation.navigate(props.title,{title:props.title})}>
+<TouchableOpacity  style={{...styles.card}} onPress={()=>console.warn("Upgrade to Premium")}>
 <Image
         style={{width:50,height: 50,}}
         source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}
@@ -12,7 +12,7 @@ return(
       <Text style={styles.text}>{props.title}</Text>
       <Image
         style={{width:50,height: 50,position:'absolute',right:10}}
-        source={require('../resources/images/arrow-right.png')}
+        source={{uri: 'https://plumbr.io/app/uploads/2015/01/thread-lock.jpeg',}}
       />
 {/* <List.Item
     title={props.title}
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
   }
 
 });
-export default ItemList;
+export default ItemListFake;

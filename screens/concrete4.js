@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {TouchableOpacity,StyleSheet,Image,Text,View,ScrollView} from 'react-native'
 import {Divider,TextInput,Button,DataTable,ToggleButton} from 'react-native-paper'
-import ConcretePart1 from '../components/concretepart1';
+import LengthView from '../components/length';
 import ConcretePerPart1 from '../components/concreteperpart1';
 import WeightView from '../components/weight';
 import ViewShot from 'react-native-view-shot';
@@ -9,8 +9,14 @@ import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
 
 
-const Concrete1 = ({route,navigation}) => {
+const Concrete4 = ({route,navigation}) => {
   const viewShot = React.useRef();
+  const [calclength, setcalcLength] = React.useState("1");
+  const [calcwidth, setcalcWidth] = React.useState("1");
+  const [calcthick, setcalcThick] = React.useState("1");
+  const [length, setLength] = React.useState("5");
+  const [width, setWidth] = React.useState("5");
+  const [thick, setThick] = React.useState("5");
   const [volume, setVolume] = React.useState("5");
   const [calcvolume, setcalcVolume] = React.useState("1");
   const [cement, setCement] = React.useState("1");
@@ -25,7 +31,13 @@ const Concrete1 = ({route,navigation}) => {
   const [cementbagprice, setCementbagprice] = React.useState("0");
   const [cementratio, setCementratio] = React.useState("0.5");
 
-    const [open, setOpen] = React.useState(false);
+  React.useEffect(() => {   
+    setVolume(0.785*length*length*width) ; setcalcVolume(calclength*calclength*calcwidth);
+    console.log('changed') },[length,width,calclength,calcwidth]);
+
+    const [openl, setOpenl] = React.useState(false);
+    const [openw, setOpenw] = React.useState(false);
+    const [opent, setOpent] = React.useState(false);
     const [value, setValue] = React.useState(null);
     const [text2, setText2] = React.useState("");
     const [open2, setOpen2] = React.useState(false);
@@ -70,8 +82,11 @@ return(<ScrollView style={{backgroundColor: '#DDDDDD',height:'100%'}}>
       <Text style={styles.text}>{title}</Text>
 
 </TouchableOpacity>
-<View style={{marginBottom:10,justifyContent:'center',width:'100%'}}>
-<ConcretePart1 label={"Concrete Volume"} value={calcvolume} text={volume} open={open} setOpen={setOpen} setText={setVolume} setValue={setcalcVolume}/>
+<View style={{marginBottom:5,justifyContent:'center',width:'100%'}}>
+<LengthView label={"Diameter d"} value={calclength} text={length} open={openl} setOpen={setOpenl} setText={setLength} setValue={setcalcLength}/>
+</View>
+<View style={{marginBottom:5,justifyContent:'center',width:'100%'}}>
+<LengthView label={"Height h"} value={calcwidth} text={width} open={openw} setOpen={setOpenw} setText={setWidth} setValue={setcalcWidth}/>
 </View>
 <Divider style={{borderWidth:1,width:'100%',zIndex:-1,marginBottom:5}} />
 <View style={{display:'flex',flexDirection:'column',width:'100%',zIndex:-1}}>
@@ -499,4 +514,4 @@ const styles = StyleSheet.create({
 
 
 });
-export default Concrete1;
+export default Concrete4;

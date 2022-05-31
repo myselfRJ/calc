@@ -35,6 +35,10 @@ import Cover from './components/cover';
 import Quantity from './screens/quantity';
 import Concrete from './screens/concrete';
 import Concrete1 from './screens/concrete1';
+import Concrete2 from './screens/concrete2';
+import Concrete3 from './screens/concrete3';
+import Concrete4 from './screens/concrete4';
+import Concrete5 from './screens/concrete5';
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -202,10 +206,31 @@ const DemoScreen = ({navigation}) => {
           options={{title: 'Concrete Calculator'}}
         />
         <Stack.Screen
-          name="Concrete1"
+          name="Concrete by Volume"
           component={Concrete1}
           options={{title: 'Calculation of Concrete by Volume'}}
         />
+        <Stack.Screen
+          name="Slab Concrete"
+          component={Concrete2}
+          options={{title: 'Calculation of Slab Concrete'}}
+        />
+        <Stack.Screen
+          name="Square Column Concrete"
+          component={Concrete3}
+          options={{title: 'Calculation of Square Column Concrete'}}
+        />
+        <Stack.Screen
+          name="Round Column Concrete"
+          component={Concrete4}
+          options={{title: 'Calculation of Round Column Concrete'}}
+        />
+         <Stack.Screen
+          name="Circle Tank Concrete"
+          component={Concrete5}
+          options={{title: 'Calculation of Circle Tank Concrete'}}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

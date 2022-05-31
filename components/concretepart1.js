@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyleSheet,View} from 'react-native';
 import { TextInput } from 'react-native-paper';
 import DropDownPicker from 'react-native-dropdown-picker';
-const ConcretePart1 = ({text,left,right,label,value,setText,setValue,open,setOpen,view,setCalc}) => {
+const ConcretePart1 = ({text,left,right,label,value,setText,setValue,open,setOpen,view}) => {
 
     
     const [items, setItems] = React.useState([
@@ -23,7 +23,7 @@ activeOutlineColor='#00ADB5'
 keyboardType='numeric'
       label={label}
       value={text}
-      onChangeText={text => {setText(parseFloat(text));setCalc(text*items.value);console.log(text*items.value)}}
+      onChangeText={text => setText(parseFloat(text))}
    / ></View>
 <View style={{width:'18%',marginLeft:3}}>
 <DropDownPicker 
