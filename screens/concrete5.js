@@ -32,7 +32,7 @@ const Concrete5 = ({route,navigation}) => {
   const [cementratio, setCementratio] = React.useState("0.5");
 
   React.useEffect(() => {   
-    setVolume(0.785*width*calcwidth*(parseFloat(2*length*calclength*thick*calcthick)-(parseFloat(thick*calcthick)*parseFloat(thick*calcthick)))) ; setcalcVolume('1');
+    setVolume(0.785*4*width*calcwidth*(parseFloat(length*calclength*thick*calcthick)-(parseFloat(thick*calcthick)*parseFloat(thick*calcthick)))) ; setcalcVolume('1');
     console.log('height',width,calcwidth,'dia',length,calclength,'thick',thick,calcthick) },[length,width,thick,calclength,calcwidth,calcthick]);
 
     const [openl, setOpenl] = React.useState(false);
