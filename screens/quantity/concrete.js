@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View,FlatList,ScrollView} from 'react-native'
-import ItemList from '../components/itemlist';
-import ItemListFake from '../components/itemlistfake';
+import ItemList from '../../components/itemlist';
+import ItemListFake from '../../components/itemlistfake';
 
 const Concrete = ({navigation}) => {
     const data=[

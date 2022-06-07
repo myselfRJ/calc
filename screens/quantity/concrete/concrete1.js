@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {TouchableOpacity,StyleSheet,Image,Text,View,ScrollView} from 'react-native'
 import {Divider,TextInput,Button,DataTable,ToggleButton} from 'react-native-paper'
-import ConcretePart1 from '../components/concretepart1';
-import ConcretePerPart1 from '../components/concreteperpart1';
-import WeightView from '../components/weight';
+import ConcretePart1 from '../../../components/concretepart1';
+import ConcretePerPart1 from '../../../components/concreteperpart1';
+import WeightView from '../../../components/weight';
 import ViewShot from 'react-native-view-shot';
 import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
