@@ -1,23 +1,17 @@
+import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
 import {View, FlatList, ScrollView} from 'react-native';
 import ItemList from '../../components/itemlist';
 import ItemListFake from '../../components/itemlistfake';
 
-const Concrete = ({navigation}) => {
+const Bricks = () => {
+  const navigation = useNavigation();
   const data = [
-    {title: 'Concrete by Volume'},
-    {title: 'Slab Concrete'},
-    {title: 'Square Column Concrete'},
-    {title: 'Round Column Concrete'},
-    {title: 'Circle Tank Concrete'},
+    {title: 'Bricks by Volume'},
+    {title: 'Wall Bricks'},
+    {title: 'Circle Wall Bricks'},
   ];
-  const dataFake = [
-    {title: 'Dam Body Concrete'},
-    {title: 'Retaining Wall Concrete'},
-    {title: 'Square Column Concrete'},
-    {title: 'Round Column Concrete'},
-    {title: 'Circle Tank Concrete'},
-  ];
+  const dataFake = [{title: 'Total Room Bricks'}, {title: 'Arch Wall Bricks'}];
   const renderItem = ({item}) => (
     <ItemList title={item.title} navigation={navigation} />
   );
@@ -44,4 +38,4 @@ const Concrete = ({navigation}) => {
   );
 };
 
-export default Concrete;
+export default Bricks;

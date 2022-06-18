@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import DropDownPicker from 'react-native-dropdown-picker';
-const LengthView = ({
+const AreaView = ({
   text,
   label,
   value,
@@ -13,12 +13,10 @@ const LengthView = ({
   view,
 }) => {
   const [items, setItems] = React.useState([
-    {label: 'mm', value: '0.001'},
-    {label: 'cm', value: '0.01'},
-    {label: 'inch', value: '0.0254'},
-    {label: 'm', value: '1'},
-    {label: 'ft', value: '0.304'},
-    {label: 'yrd', value: '0.914'},
+    {label: 'inch\u00B2', value: '0.000645'},
+    {label: 'm\u00B2', value: '1'},
+    {label: 'ft\u00B2', value: '0.0929'},
+    {label: 'yrd\u00B2', value: '0.836'},
   ]);
   return (
     <View
@@ -49,7 +47,7 @@ const LengthView = ({
           setOpen={setOpen}
           setValue={setValue}
           setItems={setItems}
-          placeholder={'mm'}
+          placeholder={'m\u00B2'}
           containerStyle={{width: 45}}
           showArrowIcon={false}
           showTickIcon={false}
@@ -87,4 +85,4 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
 });
-export default LengthView;
+export default AreaView;

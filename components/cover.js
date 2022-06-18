@@ -6,13 +6,13 @@ import {TouchableOpacity,useColorScheme} from 'react-native'
 const Cover = (props) => {
   const scheme = useColorScheme();
 return(
-<TouchableOpacity  style={[styles.card, styles.shadowProp]} onPress={() => {props.navigation.navigate('Concrete')}}>
+<TouchableOpacity  style={[styles.card, styles.shadowProp]} onPress={() => {props.navigation.navigate(props.title)}}>
 <CardViewWithImage
         width={'100%'}
         source={ {uri: 'https://placeimg.com/640/480/nature'} }
         title={ props.title }
         roundedImage={ false }
-
+        titleFontSize={16}
         style={{bgColor:'#E8F6EF'}}
     />
 </TouchableOpacity>

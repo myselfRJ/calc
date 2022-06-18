@@ -1,56 +1,73 @@
 import * as React from 'react';
-import {StyleSheet,View} from 'react-native';
-import { TextInput } from 'react-native-paper';
+import {StyleSheet, View} from 'react-native';
+import {TextInput} from 'react-native-paper';
 import DropDownPicker from 'react-native-dropdown-picker';
-const WeightView = ({text,label,value,setText,setValue,open,setOpen,view}) => {
-
-    
-    const [items, setItems] = React.useState([
-      {label:'lb', value: '0.453592'},
-      {label: 'kg', value: '1'},
-    ]);
-return(
-<View style={{display:'flex',flexDirection:'row',width:view,justifyContent:'flex-start',alignItems:'center'}}>
-<View style={{width:'75%'}}>
-<TextInput 
-mode={'outlined'}
-style={{height:35,fontSize:12}}
-activeOutlineColor='#00ADB5'
-keyboardType='numeric'
-      label={label}
-      value={text}
-      onChangeText={text => setText(parseFloat(text))}
-   / ></View>
-<View style={{width:'15%',marginLeft:3}}>
-<DropDownPicker 
-      open={open}
-      disableBorderRadius={false}
-      value={value}
-      items={items}
-      setOpen={setOpen}
-      setValue={setValue}
-      setItems={setItems}
-      placeholder={"kg"}
-      containerStyle={{width:35}}
-      showArrowIcon={false}
-      showTickIcon={false}
-      listMode={"SCROLLVIEW"}
+const WeightView = ({
+  text,
+  label,
+  value,
+  setText,
+  setValue,
+  open,
+  setOpen,
+  view,
+}) => {
+  const [items, setItems] = React.useState([
+    {label: 'lb', value: '0.453592'},
+    {label: 'kg', value: '1'},
+  ]);
+  return (
+    <View
       style={{
-  backgroundColor: "#99C4C8",position:'relative'}}
-
-      textStyle={{
-  fontSize: 10,color: "black",
-}}
-dropDownContainerStyle={{
-  backgroundColor: "#dfdfdf"
-}}
-    /></View>
-</View>
-);
-}
+        display: 'flex',
+        flexDirection: 'row',
+        width: view,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+      }}>
+      <View style={{width: '75%'}}>
+        <TextInput
+          mode={'outlined'}
+          style={{height: 40, fontSize: 10}}
+          activeOutlineColor="#00ADB5"
+          keyboardType="numeric"
+          label={label}
+          value={text}
+          onChangeText={text => setText(parseFloat(text))}
+        />
+      </View>
+      <View style={{width: '15%', marginLeft: 3,justifyContent:'center'}}>
+        <DropDownPicker
+          open={open}
+          disableBorderRadius={false}
+          value={value}
+          items={items}
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setItems}
+          placeholder={'kg'}
+          containerStyle={{width: 35}}
+          showArrowIcon={false}
+          showTickIcon={false}
+          listMode={'SCROLLVIEW'}
+          style={{
+            backgroundColor: '#99C4C8',
+            position: 'relative',
+          }}
+          textStyle={{
+            fontSize: 8,
+            color: 'black',textAlign:'center'
+          }}
+          dropDownContainerStyle={{
+            backgroundColor: '#dfdfdf',
+          }}
+        />
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
- 
   card: {
     backgroundColor: 'white',
     borderRadius: 8,

@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   },
   text:{
     fontFamily: "Cochin",
-    fontSize:22,
+    fontSize:16,
     marginLeft:20
   }
 

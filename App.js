@@ -15,9 +15,11 @@ import {
   StyleSheet,
   Text,
   useColorScheme,
-  View, useWindowDimensions ,Dimensions
+  View,
+  useWindowDimensions,
+  Dimensions,
 } from 'react-native';
-import {a} from './resources/images/a.png'
+import {a} from './resources/images/a.png';
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 import LottieView from 'lottie-react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -27,18 +29,33 @@ import {
   DarkTheme,
 } from '@react-navigation/native';
 import {Appbar, Menu} from 'react-native-paper';
-import { TabView, SceneMap,TabBar,
-  SceneRendererProps, } from 'react-native-tab-view';
+import {
+  TabView,
+  SceneMap,
+  TabBar,
+  SceneRendererProps,
+} from 'react-native-tab-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Cover from './components/cover';
 import Quantity from './screens/quantity';
-import Concrete from './screens/concrete';
-import Concrete1 from './screens/concrete1';
-import Concrete2 from './screens/concrete2';
-import Concrete3 from './screens/concrete3';
-import Concrete4 from './screens/concrete4';
-import Concrete5 from './screens/concrete5';
+//////
+import Concrete from './screens/quantity/concrete';
+import Concrete1 from './screens/quantity/concrete/concrete1';
+import Concrete2 from './screens/quantity/concrete/concrete2';
+import Concrete3 from './screens/quantity/concrete/concrete3';
+import Concrete4 from './screens/quantity/concrete/concrete4';
+import Concrete5 from './screens/quantity/concrete/concrete5';
+//////
+import Bricks from './screens/quantity/bricks';
+import Bricks1 from './screens/quantity/bricks/bricks1';
+import Bricks2 from './screens/quantity/bricks/bricks2';
+import Bricks3 from './screens/quantity/bricks/bricks3';
+import Blocks1 from './screens/quantity/blocks/blocks1';
+import Soil from './screens/quantity/soil';
+import Soil1 from './screens/quantity/soil/soil1';
+import Soil2 from './screens/quantity/soil/soil2';
+import Soil3 from './screens/quantity/soil/soil3';
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -95,22 +112,22 @@ const App: () => Node = () => {
     );
   }
   const FirstRoute = () => (
-    <View style={{ flex: 1, backgroundColor: '#ff4081' }} />
+    <View style={{flex: 1, backgroundColor: '#ff4081'}} />
   );
-  
+
   const SecondRoute = () => (
-    <View style={{ flex: 1, backgroundColor: '#673ab7' }} />
+    <View style={{flex: 1, backgroundColor: '#673ab7'}} />
   );
   const ThirdRoute = () => (
-    <View style={{ flex: 1, backgroundColor: '#aa4ab7' }} />
+    <View style={{flex: 1, backgroundColor: '#aa4ab7'}} />
   );
   const FourthRoute = () => (
-    <View style={{ flex: 1, backgroundColor: '#ba4ab7' }} />
+    <View style={{flex: 1, backgroundColor: '#ba4ab7'}} />
   );
   const FifthRoute = () => (
-    <View style={{ flex: 1, backgroundColor: '#ff4ab7' }} />
+    <View style={{flex: 1, backgroundColor: '#ff4ab7'}} />
   );
-  const renderScene = ({ route}) => {
+  const renderScene = ({route}) => {
     switch (route.key) {
       case 'first':
         return <Quantity />;
@@ -134,7 +151,7 @@ const App: () => Node = () => {
   //   fifth: FifthRoute,
   // });
   const renderTabBar = (
-    props: SceneRendererProps & { navigationState: State }
+    props: SceneRendererProps & {navigationState: State},
   ) => (
     <TabBar
       {...props}
@@ -145,31 +162,29 @@ const App: () => Node = () => {
       tabStyle={styles.tabStyle}
     />
   );
-const DemoScreen = ({navigation}) => {
-  const layout = useWindowDimensions();
+  const DemoScreen = ({navigation}) => {
+    const layout = useWindowDimensions();
 
-  const [index, setIndex] = React.useState(0);
+    const [index, setIndex] = React.useState(0);
 
-  const [routes] = React.useState([
-    { key: 'first', title: 'Quantity'},
-    { key: 'second', title: 'RCC' },
-    { key: 'third', title: 'Structure' },
-    { key: 'fourth', title: 'Area' },
-    { key: 'fifth', title: 'Volume' },
-  ]);
+    const [routes] = React.useState([
+      {key: 'first', title: 'Quantity'},
+      {key: 'second', title: 'RCC'},
+      {key: 'third', title: 'Structure'},
+      {key: 'fourth', title: 'Area'},
+      {key: 'fifth', title: 'Volume'},
+    ]);
     return (
-
       <TabView
-      renderTabBar={renderTabBar}
-      navigationState={{ index, routes }}
-      renderScene={renderScene}
-      onIndexChange={setIndex}
-      initialLayout={{ width: '50%'}}
-      navigation={navigation}
-      
-    />
+        renderTabBar={renderTabBar}
+        navigationState={{index, routes}}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={{width: '50%'}}
+        navigation={navigation}
+      />
     );
-  }
+  };
   function CustomNavigationBar({navigation, back, options}) {
     console.log(options.title);
     return (
@@ -225,12 +240,56 @@ const DemoScreen = ({navigation}) => {
           component={Concrete4}
           options={{title: 'Calculation of Round Column Concrete'}}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="Circle Tank Concrete"
           component={Concrete5}
           options={{title: 'Calculation of Circle Tank Concrete'}}
         />
-
+        <Stack.Screen
+          name="Bricks"
+          component={Bricks}
+          options={{title: 'Bricks Calculator'}}
+        />
+        <Stack.Screen
+          name="Bricks by Volume"
+          component={Bricks1}
+          options={{title: 'Bricks Calculator'}}
+        />
+        <Stack.Screen
+          name="Wall Bricks"
+          component={Bricks2}
+          options={{title: 'Bricks Calculator'}}
+        />
+        <Stack.Screen
+          name="Circle Wall Bricks"
+          component={Bricks3}
+          options={{title: 'Bricks Calculator'}}
+        />
+        <Stack.Screen
+          name="Blocks"
+          component={Blocks1}
+          options={{title: 'Blocks Quantity'}}
+        />
+        <Stack.Screen
+          name="Soil"
+          component={Soil}
+          options={{title: 'Soil Calculator'}}
+        />
+        <Stack.Screen
+          name="Dry Unit Weight"
+          component={Soil1}
+          options={{title: 'Dry Unit Weight'}}
+        />
+        <Stack.Screen
+          name="Moisture Unit Weight"
+          component={Soil2}
+          options={{title: 'Moisture Unit Weight'}}
+        />
+        <Stack.Screen
+          name="Saturated Unit Weight"
+          component={Soil3}
+          options={{title: 'Saturated Soil Calculator'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -244,7 +303,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontWeight: 'bold',
-    fontSize:22
+    fontSize: 22,
   },
   tabStyle: {
     width: 'auto',
