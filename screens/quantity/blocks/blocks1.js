@@ -273,7 +273,8 @@ const Blocks1 = ({route, navigation}) => {
                   justifyContent: 'space-between',
                 }}>
                 <TextInput
-                  style={{width: '30%', height: 40, fontSize: 10}}
+                  style={{width: '30%', fontSize: 10}}
+                  dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
@@ -282,7 +283,8 @@ const Blocks1 = ({route, navigation}) => {
                   onChangeText={text => setCement(parseFloat(text))}
                 />
                 <TextInput
-                  style={{width: '30%', height: 40, fontSize: 10}}
+                  style={{width: '30%', fontSize: 10}}
+                  dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
@@ -291,7 +293,8 @@ const Blocks1 = ({route, navigation}) => {
                   onChangeText={text => setSand(parseFloat(text))}
                 />
                 <TextInput
-                  style={{width: '30%', height: 40, fontSize: 10}}
+                  style={{width: '30%', fontSize: 10}}
+                  dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
@@ -320,7 +323,8 @@ const Blocks1 = ({route, navigation}) => {
                     setText={setSubArea}
                     setValue={setcalcSubArea}/>
                 <TextInput
-                  style={{width: '80%', height: 40, fontSize: 10}}
+                  style={{width: '80%', fontSize: 10}}
+                  dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"

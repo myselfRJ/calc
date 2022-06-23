@@ -14,20 +14,26 @@ import {
   DataTable,
   ToggleButton,
 } from 'react-native-paper';
-import AreaView from '../../../components/area';
-import LengthView from '../../../components/length';
 import ViewShot from 'react-native-view-shot';
 import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
+import LengthView from '../../../components/length';
 
-const Soil3 = ({route, navigation}) => {
+const Helix1 = ({route, navigation}) => {
   const viewShot = React.useRef();
-  const [spgravity, setspGravity] = React.useState('0');
-  const [unitwaterwt, setWaterwt] = React.useState('0');
-  const [voidratio, setVoidRatio] = React.useState('0');
+  const [height, setHeight] = React.useState('0');
+  const [dia, setDia] = React.useState('0');
+  const [pitch, setPitch] = React.useState('0');
+  const [calcheight, setcalcHeight] = React.useState('1');
+  const [calcdia, setcalcDia] = React.useState('1');
+  const [calcpitch, setcalcPitch] = React.useState('1');
   const [calculate, setCalculate] = React.useState(0);
 
-  const {title} = route.params;
+  const [openh, setOpenH] = React.useState(false);
+  const [opend, setOpenD] = React.useState(false);
+  const [openp, setOpenP] = React.useState(false);
+
+  //const {title} = route.params;
 
   const captureAndShareScreenshot = () => {
     viewShot.current.capture().then(uri => {
@@ -69,7 +75,7 @@ const Soil3 = ({route, navigation}) => {
                 style={{width: 50, height: 50}}
                 source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
               />
-              <Text style={styles.text}>{title}</Text>
+              <Text style={styles.text}>{'Helix Bar'}</Text>
             </TouchableOpacity>
             <Divider
               style={{
@@ -94,38 +100,32 @@ const Soil3 = ({route, navigation}) => {
                   width: '100%',
                   justifyContent: 'space-between',
                 }}>
-                <TextInput
-                  style={{width: '100%', fontSize: 10}}
-                  dense={true}
-                  mode={'outlined'}
-                  activeOutlineColor="#00ADB5"
-                  keyboardType="numeric"
-                  label={'Specific Gravity of Soil'}
-                  value={spgravity}
-                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text="Gs" />}
-                  onChangeText={text => setspGravity(parseFloat(text))}
+                <LengthView
+                  label={'Height H'}
+                  value={calcheight}
+                  text={height}
+                  open={openh}
+                  setOpen={setOpenH}
+                  setText={setHeight}
+                  setValue={setcalcHeight}
                 />
-                <TextInput
-                  style={{width: '100%', fontSize: 10}}
-                  dense={true}
-                  mode={'outlined'}
-                  activeOutlineColor="#00ADB5"
-                  keyboardType="numeric"
-                  label={'Unit Weight of Water'}
-                  value={unitwaterwt}
-                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text={'N/' + 'm\u00B3'} />}
-                  onChangeText={text => setWaterwt(parseFloat(text))}
+               <LengthView
+                  label={'Diameter d'}
+                  value={calcdia}
+                  text={dia}
+                  open={opend}
+                  setOpen={setOpenD}
+                  setText={setDia}
+                  setValue={setcalcDia}
                 />
-                <TextInput
-                  style={{width: '100%', fontSize: 10}}
-                  dense={true}
-                  mode={'outlined'}
-                  activeOutlineColor="#00ADB5"
-                  keyboardType="numeric"
-                  label={'Void Ratio'}
-                  value={voidratio}
-                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text="e" />}
-                  onChangeText={text => setVoidRatio(parseFloat(text))}
+                <LengthView
+                  label={'Pitch p'}
+                  value={calcpitch}
+                  text={pitch}
+                  open={openp}
+                  setOpen={setOpenP}
+                  setText={setPitch}
+                  setValue={setcalcPitch}
                 />
               </View>
               <Divider style={{width: '150%', marginTop: 5}} />
@@ -158,7 +158,7 @@ const Soil3 = ({route, navigation}) => {
                   style={{backgroundColor: '#00ADB5'}}
                   icon="calculator"
                   mode="contained"
-                  onPress={() => {setCalculate(((parseFloat(spgravity)+parseFloat(voidratio)) * unitwaterwt) / (1 + parseFloat(voidratio)));
+                  onPress={() => {setCalculate(parseFloat(height*calcheight/(calcpitch*pitch))*(Math.sqrt(parseFloat(9.8596*dia*dia*calcdia*calcdia)+parseFloat(pitch*pitch*calcpitch*calcpitch))));
                   }}>
                   Calculate
                 </Button>
@@ -199,7 +199,7 @@ const Soil3 = ({route, navigation}) => {
 
                   <DataTable.Row>
                     <DataTable.Cell textStyle={{fontSize: 10}}>
-                      Saturated Unit Weight
+                      Helix Cutting Length
                     </DataTable.Cell>
                     <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                       {(calculate)
@@ -207,7 +207,7 @@ const Soil3 = ({route, navigation}) => {
                         .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
                     </DataTable.Cell>
                     <DataTable.Cell textStyle={{fontSize: 10}} numeric>
-                      {'N/' + 'm\u00B3'}
+                      {'cm'}
                     </DataTable.Cell>
                   </DataTable.Row>
                 </DataTable>
@@ -242,4 +242,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-export default Soil3;
+export default Helix1;

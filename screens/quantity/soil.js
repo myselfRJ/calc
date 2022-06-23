@@ -10,6 +10,8 @@ const Soil = () => {
     {title: 'Dry Unit Weight'},
     {title: 'Moisture Unit Weight'},
     {title: 'Saturated Unit Weight'},
+    {title: 'Bearing Capacity of \nCircle Foundation'},
+    {title: 'Bearing Capacity of \nContinuous Foundation'},
   ];
   const dataFake = [{title: 'Porosity'}, {title: 'Specific Weight'}, {title: 'Thermal Diffusivity'}];
   const renderItem = ({item}) => (

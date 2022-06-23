@@ -30,7 +30,8 @@ const AreaView = ({
       <View style={{width: '75%'}}>
         <TextInput
           mode={'outlined'}
-          style={{height: 40, fontSize: 10}}
+          style={{ fontSize: 10}}
+          dense={true}
           activeOutlineColor="#00ADB5"
           keyboardType="numeric"
           label={label}

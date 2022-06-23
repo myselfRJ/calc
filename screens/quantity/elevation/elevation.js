@@ -20,14 +20,15 @@ import ViewShot from 'react-native-view-shot';
 import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
 
-const Soil3 = ({route, navigation}) => {
+const Elevation1 = ({route, navigation}) => {
   const viewShot = React.useRef();
-  const [spgravity, setspGravity] = React.useState('0');
-  const [unitwaterwt, setWaterwt] = React.useState('0');
-  const [voidratio, setVoidRatio] = React.useState('0');
+  const [speed, setSpeed] = React.useState('0');
+  const [width, setWidth] = React.useState('0');
+  const [radius, setRadius] = React.useState('0');
+  const [accn, setAccn] = React.useState('9.8');
   const [calculate, setCalculate] = React.useState(0);
 
-  const {title} = route.params;
+  //const {title} = route.params;
 
   const captureAndShareScreenshot = () => {
     viewShot.current.capture().then(uri => {
@@ -62,7 +63,7 @@ const Soil3 = ({route, navigation}) => {
             backgroundColor: '#E8F6EF'
           }}>
           <View style={{width: '94%', alignItems: 'center'}}>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={{...styles.card}}
               onPress={() => console.warn('pressed')}>
               <Image
@@ -70,15 +71,15 @@ const Soil3 = ({route, navigation}) => {
                 source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
               />
               <Text style={styles.text}>{title}</Text>
-            </TouchableOpacity>
-            <Divider
+            </TouchableOpacity> */}
+            {/* <Divider
               style={{
                 borderWidth: 1,
                 width: '100%',
                 zIndex: -1,
                 marginBottom: 5,
               }}
-            />
+            /> */}
             <View
               style={{
                 display: 'flex',
@@ -100,10 +101,10 @@ const Soil3 = ({route, navigation}) => {
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
-                  label={'Specific Gravity of Soil'}
-                  value={spgravity}
-                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text="Gs" />}
-                  onChangeText={text => setspGravity(parseFloat(text))}
+                  label={'Vehicle Speed'}
+                  value={speed}
+                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text="km/hour" />}
+                  onChangeText={text => setSpeed(parseFloat(text))}
                 />
                 <TextInput
                   style={{width: '100%', fontSize: 10}}
@@ -111,10 +112,10 @@ const Soil3 = ({route, navigation}) => {
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
-                  label={'Unit Weight of Water'}
-                  value={unitwaterwt}
-                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text={'N/' + 'm\u00B3'} />}
-                  onChangeText={text => setWaterwt(parseFloat(text))}
+                  label={'Width of Road'}
+                  value={width}
+                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text={'meter'} />}
+                  onChangeText={text => setWidth(parseFloat(text))}
                 />
                 <TextInput
                   style={{width: '100%', fontSize: 10}}
@@ -122,10 +123,21 @@ const Soil3 = ({route, navigation}) => {
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
-                  label={'Void Ratio'}
-                  value={voidratio}
-                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text="e" />}
-                  onChangeText={text => setVoidRatio(parseFloat(text))}
+                  label={'Road Radius'}
+                  value={radius}
+                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text="meter" />}
+                  onChangeText={text => setRadius(parseFloat(text))}
+                />
+                <TextInput
+                  style={{width: '100%', fontSize: 10}}
+                  dense={true}
+                  mode={'outlined'}
+                  activeOutlineColor="#00ADB5"
+                  keyboardType="numeric"
+                  label={'Acceleration'}
+                  value={accn}
+                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text={'meter/sec\u00B2'} />}
+                  onChangeText={text => setAccn(parseFloat(text))}
                 />
               </View>
               <Divider style={{width: '150%', marginTop: 5}} />
@@ -158,7 +170,7 @@ const Soil3 = ({route, navigation}) => {
                   style={{backgroundColor: '#00ADB5'}}
                   icon="calculator"
                   mode="contained"
-                  onPress={() => {setCalculate(((parseFloat(spgravity)+parseFloat(voidratio)) * unitwaterwt) / (1 + parseFloat(voidratio)));
+                  onPress={() => {setCalculate(speed*speed*width*100/(127*radius));
                   }}>
                   Calculate
                 </Button>
@@ -199,7 +211,7 @@ const Soil3 = ({route, navigation}) => {
 
                   <DataTable.Row>
                     <DataTable.Cell textStyle={{fontSize: 10}}>
-                      Saturated Unit Weight
+                      Super Elevation h
                     </DataTable.Cell>
                     <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                       {(calculate)
@@ -207,7 +219,7 @@ const Soil3 = ({route, navigation}) => {
                         .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
                     </DataTable.Cell>
                     <DataTable.Cell textStyle={{fontSize: 10}} numeric>
-                      {'N/' + 'm\u00B3'}
+                      {'cm'}
                     </DataTable.Cell>
                   </DataTable.Row>
                 </DataTable>
@@ -242,4 +254,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-export default Soil3;
+export default Elevation1;

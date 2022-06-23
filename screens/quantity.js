@@ -4,7 +4,7 @@ import Cover from '../components/cover';
 import {useNavigation} from '@react-navigation/native';
 const Quantity = () => {
   const navigation = useNavigation();
-  console.log(navigation, '@@@@@@@@@@@');
+  console.log(navigation, '@@@@@@@@@@@2');
   const data = [
     {title: 'Concrete'},
     {title: 'Bricks'},

@@ -95,7 +95,8 @@ const Soil1 = ({route, navigation}) => {
                   justifyContent: 'space-between',
                 }}>
                 <TextInput
-                  style={{width: '100%', height: 40, fontSize: 10}}
+                  style={{width: '100%', fontSize: 10}}
+                  dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
@@ -105,7 +106,8 @@ const Soil1 = ({route, navigation}) => {
                   onChangeText={text => setspGravity(parseFloat(text))}
                 />
                 <TextInput
-                  style={{width: '100%', height: 40, fontSize: 10}}
+                  style={{width: '100%', fontSize: 10}}
+                  dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
@@ -115,7 +117,8 @@ const Soil1 = ({route, navigation}) => {
                   onChangeText={text => setWaterwt(parseFloat(text))}
                 />
                 <TextInput
-                  style={{width: '100%', height: 40, fontSize: 10}}
+                  style={{width: '100%', fontSize: 10}}
+                  dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"

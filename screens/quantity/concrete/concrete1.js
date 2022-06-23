@@ -129,8 +129,9 @@ const Concrete1 = ({route, navigation}) => {
                   justifyContent: 'space-between',
                 }}>
                 <TextInput
-                  style={{width: '30%', height: 40, fontSize: 10}}
+                  style={{width: '30%', fontSize: 10}}
                   mode={'outlined'}
+                  dense={true}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
                   label={'Cement'}
@@ -138,8 +139,9 @@ const Concrete1 = ({route, navigation}) => {
                   onChangeText={text => setCement(parseFloat(text))}
                 />
                 <TextInput
-                  style={{width: '30%', height: 40, fontSize: 10}}
+                  style={{width: '30%', fontSize: 10}}
                   mode={'outlined'}
+                  dense={true}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
                   label={'Sand'}
@@ -147,8 +149,9 @@ const Concrete1 = ({route, navigation}) => {
                   onChangeText={text => setSand(parseFloat(text))}
                 />
                 <TextInput
-                  style={{width: '30%', height: 40, fontSize: 10}}
+                  style={{width: '30%', fontSize: 10}}
                   mode={'outlined'}
+                  dense={true}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
                   label={'Aggregate'}
@@ -195,8 +198,9 @@ const Concrete1 = ({route, navigation}) => {
                   justifyContent: 'space-between',
                 }}>
                 <TextInput
-                  style={{width: '47%', height: 40, fontSize: 10}}
+                  style={{width: '47%', fontSize: 10}}
                   mode={'outlined'}
+                  dense={true}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
                   label={'Dry Volume'}
@@ -204,8 +208,9 @@ const Concrete1 = ({route, navigation}) => {
                   onChangeText={text => setDryVolume(parseFloat(text))}
                 />
                 <TextInput
-                  style={{width: '47%', height: 40, fontSize: 10}}
+                  style={{width: '47%', fontSize: 10}}
                   mode={'outlined'}
+                  dense={true}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
                   label={'Quantity'}
@@ -222,8 +227,9 @@ const Concrete1 = ({route, navigation}) => {
                   justifyContent: 'space-between',
                 }}>
                 <TextInput
-                  style={{width: '47%', height: 40, fontSize: 10}}
+                  style={{width: '47%', fontSize: 10}}
                   mode={'outlined'}
+                  dense={true}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
                   label={'Cement Bag Price'}
@@ -231,8 +237,9 @@ const Concrete1 = ({route, navigation}) => {
                   onChangeText={text => setCementbagprice(parseFloat(text))}
                 />
                 <TextInput
-                  style={{width: '47%', height: 40, fontSize: 10}}
+                  style={{width: '47%', fontSize: 10}}
                   mode={'outlined'}
+                  dense={true}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
                   label={'Water Cement Ratio'}

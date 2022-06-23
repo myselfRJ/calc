@@ -20,11 +20,15 @@ import ViewShot from 'react-native-view-shot';
 import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
 
-const Soil3 = ({route, navigation}) => {
+const Soil4 = ({route, navigation}) => {
   const viewShot = React.useRef();
-  const [spgravity, setspGravity] = React.useState('0');
-  const [unitwaterwt, setWaterwt] = React.useState('0');
-  const [voidratio, setVoidRatio] = React.useState('0');
+  const [C, setC] = React.useState('0');
+  const [Nc, setNc] = React.useState('0');
+  const [sD, setSD] = React.useState('0');
+  const [Nq, setNq] = React.useState('0');
+  const [Y, setY] = React.useState('0');
+  const [B, setB] = React.useState('0');
+  const [Ny, setNy] = React.useState('0');
   const [calculate, setCalculate] = React.useState(0);
 
   const {title} = route.params;
@@ -100,10 +104,10 @@ const Soil3 = ({route, navigation}) => {
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
-                  label={'Specific Gravity of Soil'}
-                  value={spgravity}
-                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text="Gs" />}
-                  onChangeText={text => setspGravity(parseFloat(text))}
+                  label={'Effective Cohesion'}
+                  value={C}
+                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text="C" />}
+                  onChangeText={text => setC(parseFloat(text))}
                 />
                 <TextInput
                   style={{width: '100%', fontSize: 10}}
@@ -111,10 +115,10 @@ const Soil3 = ({route, navigation}) => {
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
-                  label={'Unit Weight of Water'}
-                  value={unitwaterwt}
-                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text={'N/' + 'm\u00B3'} />}
-                  onChangeText={text => setWaterwt(parseFloat(text))}
+                  label={'Nc Bearing Capacity Factor'}
+                  value={Nc}
+                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text={'Nc'} />}
+                  onChangeText={text => setNc(parseFloat(text))}
                 />
                 <TextInput
                   style={{width: '100%', fontSize: 10}}
@@ -122,10 +126,54 @@ const Soil3 = ({route, navigation}) => {
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
-                  label={'Void Ratio'}
-                  value={voidratio}
-                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text="e" />}
-                  onChangeText={text => setVoidRatio(parseFloat(text))}
+                  label={'Vertical Effective Stress'}
+                  value={sD}
+                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text="δD" />}
+                  onChangeText={text => setSD(parseFloat(text))}
+                />
+                <TextInput
+                  style={{width: '100%', fontSize: 10}}
+                  dense={true}
+                  mode={'outlined'}
+                  activeOutlineColor="#00ADB5"
+                  keyboardType="numeric"
+                  label={'Nq Bearing Capacity Factor'}
+                  value={Nq}
+                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text="Nq" />}
+                  onChangeText={text => setNq(parseFloat(text))}
+                />
+                <TextInput
+                  style={{width: '100%', fontSize: 10}}
+                  dense={true}
+                  mode={'outlined'}
+                  activeOutlineColor="#00ADB5"
+                  keyboardType="numeric"
+                  label={'Effective Unit Weight'}
+                  value={Y}
+                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text="Y" />}
+                  onChangeText={text => setY(parseFloat(text))}
+                />
+                <TextInput
+                  style={{width: '100%', fontSize: 10}}
+                  dense={true}
+                  mode={'outlined'}
+                  activeOutlineColor="#00ADB5"
+                  keyboardType="numeric"
+                  label={'Weight or Diameter of Foundation'}
+                  value={B}
+                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text="B" />}
+                  onChangeText={text => setB(parseFloat(text))}
+                />
+                <TextInput
+                  style={{width: '100%', fontSize: 10}}
+                  dense={true}
+                  mode={'outlined'}
+                  activeOutlineColor="#00ADB5"
+                  keyboardType="numeric"
+                  label={'Nγ Bearing Capacity Factor'}
+                  value={Ny}
+                  right={<TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text="Nγ" />}
+                  onChangeText={text => setNy(parseFloat(text))}
                 />
               </View>
               <Divider style={{width: '150%', marginTop: 5}} />
@@ -158,7 +206,7 @@ const Soil3 = ({route, navigation}) => {
                   style={{backgroundColor: '#00ADB5'}}
                   icon="calculator"
                   mode="contained"
-                  onPress={() => {setCalculate(((parseFloat(spgravity)+parseFloat(voidratio)) * unitwaterwt) / (1 + parseFloat(voidratio)));
+                  onPress={() => {setCalculate(parseFloat(1.3*C*Nc)+parseFloat(sD*Nq)+parseFloat(0.3*Y*B*Ny));
                   }}>
                   Calculate
                 </Button>
@@ -199,7 +247,7 @@ const Soil3 = ({route, navigation}) => {
 
                   <DataTable.Row>
                     <DataTable.Cell textStyle={{fontSize: 10}}>
-                      Saturated Unit Weight
+                      Bearing Capacity
                     </DataTable.Cell>
                     <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                       {(calculate)
@@ -207,7 +255,7 @@ const Soil3 = ({route, navigation}) => {
                         .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
                     </DataTable.Cell>
                     <DataTable.Cell textStyle={{fontSize: 10}} numeric>
-                      {'N/' + 'm\u00B3'}
+                      {''}
                     </DataTable.Cell>
                   </DataTable.Row>
                 </DataTable>
@@ -242,4 +290,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-export default Soil3;
+export default Soil4;

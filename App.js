@@ -56,6 +56,10 @@ import Soil from './screens/quantity/soil';
 import Soil1 from './screens/quantity/soil/soil1';
 import Soil2 from './screens/quantity/soil/soil2';
 import Soil3 from './screens/quantity/soil/soil3';
+import Soil4 from './screens/quantity/soil/soil4';
+import Soil5 from './screens/quantity/soil/soiil5';
+import Elevation1 from './screens/quantity/elevation/elevation';
+import Helix1 from './screens/quantity/helix/helix1';
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -127,6 +131,9 @@ const App: () => Node = () => {
   const FifthRoute = () => (
     <View style={{flex: 1, backgroundColor: '#ff4ab7'}} />
   );
+  const SixthRoute = () => (
+    <View style={{flex: 1, backgroundColor: '#ff4afb'}} />
+  );
   const renderScene = ({route}) => {
     switch (route.key) {
       case 'first':
@@ -139,6 +146,8 @@ const App: () => Node = () => {
         return <FourthRoute />;
       case 'fifth':
         return <FifthRoute />;
+      case 'sixth':
+        return <SixthRoute />;
       default:
         return null;
     }
@@ -173,6 +182,7 @@ const App: () => Node = () => {
       {key: 'third', title: 'Structure'},
       {key: 'fourth', title: 'Area'},
       {key: 'fifth', title: 'Volume'},
+      {key: 'sixth', title: 'Conversion'},
     ]);
     return (
       <TabView
@@ -290,6 +300,26 @@ const App: () => Node = () => {
           component={Soil3}
           options={{title: 'Saturated Soil Calculator'}}
         />
+        <Stack.Screen
+          name="Bearing Capacity of Circle Foundation"
+          component={Soil4}
+          options={{title: 'Bearing Capacity of Circle Foundation'}}
+        />
+        <Stack.Screen
+          name="Bearing Capacity of Continuous Foundation"
+          component={Soil5}
+          options={{title: 'Bearing Capacity of Continuous Foundation'}}
+        />
+        <Stack.Screen
+          name="Elevation"
+          component={Elevation1}
+          options={{title: 'Calculation of Super Elevation'}}
+        />
+        <Stack.Screen
+          name="Helix Bar"
+          component={Helix1}
+          options={{title: 'Calculation of Helix Bar'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -303,7 +333,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontWeight: 'bold',
-    fontSize: 22,
+    fontSize: 16,
   },
   tabStyle: {
     width: 'auto',

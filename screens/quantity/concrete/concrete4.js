@@ -159,7 +159,8 @@ const Concrete4 = ({route, navigation}) => {
                   justifyContent: 'space-between',
                 }}>
                 <TextInput
-                  style={{width: '30%', height: 40, fontSize: 10}}
+                  style={{width: '30%', fontSize: 10}}
+                  dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
@@ -168,7 +169,8 @@ const Concrete4 = ({route, navigation}) => {
                   onChangeText={text => setCement(parseFloat(text))}
                 />
                 <TextInput
-                  style={{width: '30%', height: 40, fontSize: 10}}
+                  style={{width: '30%', fontSize: 10}}
+                  dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
@@ -177,7 +179,8 @@ const Concrete4 = ({route, navigation}) => {
                   onChangeText={text => setSand(parseFloat(text))}
                 />
                 <TextInput
-                  style={{width: '30%', height: 40, fontSize: 10}}
+                  style={{width: '30%', fontSize: 10}}
+                  dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
@@ -225,7 +228,8 @@ const Concrete4 = ({route, navigation}) => {
                   justifyContent: 'space-between',
                 }}>
                 <TextInput
-                  style={{width: '47%', height: 40, fontSize: 10}}
+                  style={{width: '47%', fontSize: 10}}
+                  dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
@@ -234,7 +238,8 @@ const Concrete4 = ({route, navigation}) => {
                   onChangeText={text => setDryVolume(parseFloat(text))}
                 />
                 <TextInput
-                  style={{width: '47%', height: 40, fontSize: 10}}
+                  style={{width: '47%', fontSize: 10}}
+                  dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
@@ -252,7 +257,8 @@ const Concrete4 = ({route, navigation}) => {
                   justifyContent: 'space-between',
                 }}>
                 <TextInput
-                  style={{width: '47%', height: 40, fontSize: 10}}
+                  style={{width: '47%', fontSize: 10}}
+                  dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
@@ -261,7 +267,8 @@ const Concrete4 = ({route, navigation}) => {
                   onChangeText={text => setCementbagprice(parseFloat(text))}
                 />
                 <TextInput
-                  style={{width: '47%', height: 40, fontSize: 10}}
+                  style={{width: '47%', fontSize: 10}}
+                  dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"

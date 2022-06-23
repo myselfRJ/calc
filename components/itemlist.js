@@ -4,7 +4,7 @@ import {TouchableOpacity,StyleSheet,Image,Text} from 'react-native'
 const ItemList = (props) => {
     console.log(props)
 return(
-<TouchableOpacity  style={{...styles.card}} onPress={()=>props.navigation.navigate(props.title,{title:props.title})}>
+<TouchableOpacity  style={{...styles.card}} onPress={()=>props.navigation.navigate(props.title.replace(/\n/g, ''),{title:props.title})}>
 <Image
         style={{width:50,height: 50,}}
         source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}

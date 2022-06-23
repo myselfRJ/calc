@@ -32,7 +32,8 @@ const ConcretePart1 = ({
       <View style={{width: '72%'}}>
         <TextInput
           mode={'outlined'}
-          style={{height: 40, fontSize: 10}}
+          style={{ fontSize: 10}}
+          dense={true}
           right={right ? <TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text={right} /> : ''}
           left={left ? <TextInput.Affix text={left} /> : ''}
           activeOutlineColor="#00ADB5"
