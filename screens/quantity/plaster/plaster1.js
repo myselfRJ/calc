@@ -15,40 +15,39 @@ import {
   ToggleButton,
 } from 'react-native-paper';
 import LengthView from '../../../components/length';
-import ConcretePerPart1 from '../../../components/concreteperpart1';
+import Area from '../../../components/area';
 import WeightView from '../../../components/weight';
 import ViewShot from 'react-native-view-shot';
 import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
-import Quantity from '../../quantity';
 
-const Concrete2 = ({route, navigation}) => {
+const Plaster1 = ({route, navigation}) => {
   const viewShot = React.useRef();
   const [calclength, setcalcLength] = React.useState('1');
   const [calcwidth, setcalcWidth] = React.useState('1');
-  const [calcthick, setcalcThick] = React.useState('1');
+  const [calcthick, setcalcThick] = React.useState('0.01');
   const [length, setLength] = React.useState('5');
   const [width, setWidth] = React.useState('5');
-  const [thick, setThick] = React.useState('5');
+  const [thick, setThick] = React.useState('1.5');
   const [volume, setVolume] = React.useState('5');
   const [calcvolume, setcalcVolume] = React.useState('1');
   const [cement, setCement] = React.useState('1');
-  const [sand, setSand] = React.useState('2');
+  const [sand, setSand] = React.useState('5');
   const [aggregate, setAggregate] = React.useState('4');
   const [cementbag, setCementbag] = React.useState('50');
   const [calccementbag, setcalcCementbag] = React.useState('1');
   const [concreteprice, setConcretePrice] = React.useState('0');
   const [calcconcreteprice, setcalcConcretePrice] = React.useState('1');
-  const [dryvolume, setDryVolume] = React.useState('1.54');
+  const [dryvolume, setDryVolume] = React.useState('1.27');
   const [quantity, setQuantity] = React.useState('1');
   const [cementbagprice, setCementbagprice] = React.useState('0');
-  const [cementratio, setCementratio] = React.useState('0.5');
+  const [cementratio, setCementratio] = React.useState('2');
 
   React.useEffect(() => {
-    setVolume(length * width * thick);
-    setcalcVolume(calclength * calcwidth * calcthick*quantity);
+    setVolume(length * width * thick*quantity*(1+parseFloat(cementratio*0.01)));
+    setcalcVolume(calclength * calcwidth * calcthick);
     console.log('changed',calclength,length);
-  }, [length, width, thick, calclength, calcwidth, calcthick,quantity]);
+  }, [length, width, thick, calclength, calcwidth, calcthick,quantity,cementratio]);
 
   const [openl, setOpenl] = React.useState(false);
   const [openw, setOpenw] = React.useState(false);
@@ -60,15 +59,15 @@ const Concrete2 = ({route, navigation}) => {
   const [value2, setValue2] = React.useState(null);
   const [toggle, setToggle] = React.useState('m');
 
-  const {title} = route.params;
+  const {title} = "Wall Plaster";
   const [text1, setText1] = React.useState('');
   const captureAndShareScreenshot = () => {
     viewShot.current.capture().then(uri => {
       RNFS.readFile(uri, 'base64').then(res => {
         let urlString = 'data:image/jpeg;base64,' + res;
         let options = {
-          title: 'Share Title',
-          message: 'Share Message',
+          title: 'Share from Calc',
+          message: 'Please install it on playstore at ',
           url: urlString,
           type: 'image/jpeg',
         };
@@ -102,7 +101,7 @@ const Concrete2 = ({route, navigation}) => {
                 style={{width: 50, height: 50}}
                 source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
               />
-              <Text style={styles.text}>{title}</Text>
+              <Text style={styles.text}>Wall Plaster</Text>
             </TouchableOpacity>
             <View
               style={{
@@ -110,6 +109,7 @@ const Concrete2 = ({route, navigation}) => {
                 justifyContent: 'center',
                 width: '100%',
               }}>
+              <Text style={{color: '#00ADB5'}}>Dimensions of Plaster Wall :</Text>
               <LengthView
                 label={'Length L'}
                 value={calclength}
@@ -167,7 +167,7 @@ const Concrete2 = ({route, navigation}) => {
                 width: '100%',
                 zIndex: -1,
               }}>
-              <Text style={{color: '#00ADB5'}}>Concrete Ratio :</Text>
+              <Text style={{color: '#00ADB5'}}>Mortar Ratio and Quantity:</Text>
               <View
                 style={{
                   display: 'flex',
@@ -176,7 +176,7 @@ const Concrete2 = ({route, navigation}) => {
                   justifyContent: 'space-between',
                 }}>
                 <TextInput
-                  style={{width: '30%', fontSize: 10}}
+                  style={{width: '47%', fontSize: 10}}
                   dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
@@ -186,7 +186,7 @@ const Concrete2 = ({route, navigation}) => {
                   onChangeText={text => setCement(parseFloat(text))}
                 />
                 <TextInput
-                  style={{width: '30%', fontSize: 10}}
+                  style={{width: '47%', fontSize: 10}}
                   dense={true}
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
@@ -195,7 +195,7 @@ const Concrete2 = ({route, navigation}) => {
                   value={sand}
                   onChangeText={text => setSand(parseFloat(text))}
                 />
-                <TextInput
+                {/* <TextInput
                   style={{width: '30%', fontSize: 10}}
                   dense={true}
                   mode={'outlined'}
@@ -204,7 +204,7 @@ const Concrete2 = ({route, navigation}) => {
                   label={'Aggregate'}
                   value={aggregate}
                   onChangeText={text => setAggregate(parseFloat(text))}
-                />
+                /> */}
               </View>
               <Divider style={{width: '150%', marginTop: 5}} />
               <View
@@ -224,8 +224,8 @@ const Concrete2 = ({route, navigation}) => {
                   setValue={setcalcCementbag}
                   view={'50%'}
                 />
-                <ConcretePerPart1
-                  label={'Concrete Price'}
+                <Area
+                  label={'Plaster Price'}
                   right={'per/'}
                   value={calcconcreteprice}
                   text={concreteprice}
@@ -289,7 +289,7 @@ const Concrete2 = ({route, navigation}) => {
                   mode={'outlined'}
                   activeOutlineColor="#00ADB5"
                   keyboardType="numeric"
-                  label={'Water Cement Ratio'}
+                  label={'Wastage %'}
                   value={cementratio}
                   onChangeText={text => setCementratio(parseFloat(text))}
                 />
@@ -374,7 +374,7 @@ const Concrete2 = ({route, navigation}) => {
                     </DataTable.Header>
 
                     <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Volume</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Mortar</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
                         {(volume * calcvolume).toFixed(3)}
                       </DataTable.Cell>
@@ -382,7 +382,7 @@ const Concrete2 = ({route, navigation}) => {
                     </DataTable.Row>
 
                     <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Dry Volume</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Dry Mortar</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
                         {(dryvolume * volume * calcvolume).toFixed(3)}
                       </DataTable.Cell>
@@ -395,8 +395,7 @@ const Concrete2 = ({route, navigation}) => {
                         {(
                           (dryvolume * volume * calcvolume * cement * 1440) /
                           (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
+                            parseFloat(sand))
                         )
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
@@ -410,8 +409,7 @@ const Concrete2 = ({route, navigation}) => {
                         {(
                           (dryvolume * volume * calcvolume * cement) /
                           (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
+                            parseFloat(sand))
                         )
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
@@ -425,8 +423,7 @@ const Concrete2 = ({route, navigation}) => {
                         {(
                           (dryvolume * volume * calcvolume * sand) /
                           (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
+                            parseFloat(sand) )
                         )
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
@@ -435,34 +432,16 @@ const Concrete2 = ({route, navigation}) => {
                     </DataTable.Row>
 
                     <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Aggregate</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Plaster Area</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(
-                          (dryvolume * volume * calcvolume * aggregate) /
-                          (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
-                        )
-                          .toFixed(3)
-                          .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'m\u00B3'}</DataTable.Cell>
-                    </DataTable.Row>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Water</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {cementratio *
-                          (
-                            (dryvolume * volume * calcvolume * cement * 1440) /
-                            (parseFloat(cement) +
-                              parseFloat(sand) +
-                              parseFloat(aggregate))
+                        {
+                          (calclength*length*width*calcwidth
+                            
                           )
                             .toFixed(3)
                             .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
                       </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>Liter</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'m\u00B2'}</DataTable.Cell>
                     </DataTable.Row>
 
                     <DataTable.Row>
@@ -471,8 +450,7 @@ const Concrete2 = ({route, navigation}) => {
                         {(
                           (dryvolume * volume * calcvolume * cement * 1440) /
                           ((parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate)) *
+                            parseFloat(sand)) *
                             cementbag *
                             calccementbag)
                         )
@@ -493,8 +471,7 @@ const Concrete2 = ({route, navigation}) => {
                             1440 *
                             cementbagprice) /
                           ((parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate)) *
+                            parseFloat(sand)) *
                             cementbag)
                         )
                           .toFixed(3)
@@ -504,31 +481,22 @@ const Concrete2 = ({route, navigation}) => {
                     </DataTable.Row>
 
                     <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Concrete Cost</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Plaster Cost</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
                         {(
-                          volume *
-                          calcvolume *
+                          length*width*calclength*calcwidth *
                           concreteprice *
                           calcconcreteprice
                         ).toFixed(2)}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
-                    </DataTable.Row>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Concrete Weight</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(volume * calcvolume * 2400).toFixed(3)}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>kg</DataTable.Cell>
                     </DataTable.Row>
                   </DataTable>
                 ) : (
                   <></>
                 )}
                 {toggle === 'ft' ? (
-                  <DataTable style={{backgroundColor: '#EFFFFD'}}>
+                    <DataTable style={{backgroundColor: '#EFFFFD'}}>
                     <DataTable.Header>
                       <DataTable.Title sortDirection="descending">
                         Material
@@ -538,17 +506,17 @@ const Concrete2 = ({route, navigation}) => {
                     </DataTable.Header>
 
                     <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Volume</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Mortar</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(volume * calcvolume * 35.3147).toFixed(3)}
+                        {(volume * calcvolume*35.3147).toFixed(3)}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>{'ft\u00B3'}</DataTable.Cell>
                     </DataTable.Row>
 
                     <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Dry Volume</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Dry Mortar</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(dryvolume * volume * calcvolume * 35.3147).toFixed(3)}
+                        {(dryvolume * volume * calcvolume*35.3147).toFixed(3)}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>{'ft\u00B3'}</DataTable.Cell>
                     </DataTable.Row>
@@ -557,15 +525,9 @@ const Concrete2 = ({route, navigation}) => {
                       <DataTable.Cell textStyle={{fontSize:10}}>Cement Weight</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
                         {(
-                          (dryvolume *
-                            volume *
-                            calcvolume *
-                            cement *
-                            1440 *
-                            2.20462) /
+                          (dryvolume * volume * calcvolume * cement * 1440*2.2046) /
                           (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
+                            parseFloat(sand))
                         )
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
@@ -577,10 +539,9 @@ const Concrete2 = ({route, navigation}) => {
                       <DataTable.Cell textStyle={{fontSize:10}}>Cement</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
                         {(
-                          (dryvolume * volume * calcvolume * cement * 35.3147) /
+                          (dryvolume * volume * calcvolume * cement*35.3147) /
                           (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
+                            parseFloat(sand))
                         )
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
@@ -592,10 +553,9 @@ const Concrete2 = ({route, navigation}) => {
                       <DataTable.Cell textStyle={{fontSize:10}}>Sand</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
                         {(
-                          (dryvolume * volume * calcvolume * sand * 35.3147) /
+                          (dryvolume * volume * calcvolume * sand*35.3147) /
                           (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
+                            parseFloat(sand) )
                         )
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
@@ -604,38 +564,16 @@ const Concrete2 = ({route, navigation}) => {
                     </DataTable.Row>
 
                     <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Aggregate</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Plaster Area</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(
-                          (dryvolume *
-                            volume *
-                            calcvolume *
-                            aggregate *
-                            35.3147) /
-                          (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
-                        )
-                          .toFixed(3)
-                          .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'ft\u00B3'}</DataTable.Cell>
-                    </DataTable.Row>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Water</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {cementratio *
-                          (
-                            (dryvolume * volume * calcvolume * cement * 1440) /
-                            (parseFloat(cement) +
-                              parseFloat(sand) +
-                              parseFloat(aggregate))
+                        {
+                          (calclength*length*width*calcwidth*10.8
+                            
                           )
                             .toFixed(3)
                             .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
                       </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>Liter</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'ft\u00B2'}</DataTable.Cell>
                     </DataTable.Row>
 
                     <DataTable.Row>
@@ -644,9 +582,9 @@ const Concrete2 = ({route, navigation}) => {
                         {(
                           (dryvolume * volume * calcvolume * cement * 1440) /
                           ((parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate)) *
-                            cementbag)
+                            parseFloat(sand)) *
+                            cementbag *
+                            calccementbag)
                         )
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
@@ -665,8 +603,7 @@ const Concrete2 = ({route, navigation}) => {
                             1440 *
                             cementbagprice) /
                           ((parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate)) *
+                            parseFloat(sand)) *
                             cementbag)
                         )
                           .toFixed(3)
@@ -676,33 +613,22 @@ const Concrete2 = ({route, navigation}) => {
                     </DataTable.Row>
 
                     <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Concrete Cost</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Plaster Cost</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
                         {(
-                          volume *
-                          calcvolume *
+                          length*width*calclength*calcwidth *
                           concreteprice *
                           calcconcreteprice
                         ).toFixed(2)}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
-                    </DataTable.Row>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Concrete Weight</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(volume * calcvolume * 2400 * 2.20462)
-                          .toFixed(3)
-                          .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>lb</DataTable.Cell>
                     </DataTable.Row>
                   </DataTable>
                 ) : (
                   <></>
                 )}
                 {toggle === 'yrd' ? (
-                  <DataTable style={{backgroundColor: '#EFFFFD'}}>
+                    <DataTable style={{backgroundColor: '#EFFFFD'}}>
                     <DataTable.Header>
                       <DataTable.Title sortDirection="descending">
                         Material
@@ -712,17 +638,17 @@ const Concrete2 = ({route, navigation}) => {
                     </DataTable.Header>
 
                     <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Volume</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Mortar</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(volume * calcvolume * 1.30795).toFixed(3)}
+                        {(volume * calcvolume*1.30795).toFixed(3)}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>{'yrd\u00B3'}</DataTable.Cell>
                     </DataTable.Row>
 
                     <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Dry Volume</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Dry Mortar</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(dryvolume * volume * calcvolume * 1.30795).toFixed(3)}
+                        {(dryvolume * volume * calcvolume*1.30795).toFixed(3)}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>{'yrd\u00B3'}</DataTable.Cell>
                     </DataTable.Row>
@@ -733,8 +659,7 @@ const Concrete2 = ({route, navigation}) => {
                         {(
                           (dryvolume * volume * calcvolume * cement * 1440) /
                           (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
+                            parseFloat(sand))
                         )
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
@@ -746,10 +671,9 @@ const Concrete2 = ({route, navigation}) => {
                       <DataTable.Cell textStyle={{fontSize:10}}>Cement</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
                         {(
-                          (dryvolume * volume * calcvolume * cement * 1.30795) /
+                          (dryvolume * volume * calcvolume * cement*1.30795) /
                           (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
+                            parseFloat(sand))
                         )
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
@@ -761,10 +685,9 @@ const Concrete2 = ({route, navigation}) => {
                       <DataTable.Cell textStyle={{fontSize:10}}>Sand</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
                         {(
-                          (dryvolume * volume * calcvolume * sand * 1.30795) /
+                          (dryvolume * volume * calcvolume * sand*1.30795) /
                           (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
+                            parseFloat(sand) )
                         )
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
@@ -773,38 +696,16 @@ const Concrete2 = ({route, navigation}) => {
                     </DataTable.Row>
 
                     <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Aggregate</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Plaster Area</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(
-                          (dryvolume *
-                            volume *
-                            calcvolume *
-                            aggregate *
-                            1.30795) /
-                          (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
-                        )
-                          .toFixed(3)
-                          .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'yrd\u00B3'}</DataTable.Cell>
-                    </DataTable.Row>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Water</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {cementratio *
-                          (
-                            (dryvolume * volume * calcvolume * cement * 1440) /
-                            (parseFloat(cement) +
-                              parseFloat(sand) +
-                              parseFloat(aggregate))
+                        {
+                          (calclength*length*width*calcwidth*1.195
+                            
                           )
                             .toFixed(3)
                             .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
                       </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>Liter</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'yrd\u00B2'}</DataTable.Cell>
                     </DataTable.Row>
 
                     <DataTable.Row>
@@ -813,9 +714,9 @@ const Concrete2 = ({route, navigation}) => {
                         {(
                           (dryvolume * volume * calcvolume * cement * 1440) /
                           ((parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate)) *
-                            cementbag)
+                            parseFloat(sand)) *
+                            cementbag *
+                            calccementbag)
                         )
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
@@ -834,8 +735,7 @@ const Concrete2 = ({route, navigation}) => {
                             1440 *
                             cementbagprice) /
                           ((parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate)) *
+                            parseFloat(sand)) *
                             cementbag)
                         )
                           .toFixed(3)
@@ -845,192 +745,147 @@ const Concrete2 = ({route, navigation}) => {
                     </DataTable.Row>
 
                     <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Concrete Cost</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {volume *
-                          calcvolume *
-                          concreteprice *
-                          calcconcreteprice}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
-                    </DataTable.Row>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Concrete Weight</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(volume * calcvolume * 2400).toFixed(3)}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>kg</DataTable.Cell>
-                    </DataTable.Row>
-                  </DataTable>
-                ) : (
-                  <></>
-                )}
-                {toggle === 'brass' ? (
-                  <DataTable style={{backgroundColor: '#EFFFFD'}}>
-                    <DataTable.Header>
-                      <DataTable.Title sortDirection="descending">
-                        Material
-                      </DataTable.Title>
-                      <DataTable.Title numeric>Quantity</DataTable.Title>
-                      <DataTable.Title numeric>Unit</DataTable.Title>
-                    </DataTable.Header>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Volume</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(volume * calcvolume * 0.353).toFixed(3)}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'brass'}</DataTable.Cell>
-                    </DataTable.Row>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Dry Volume</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(dryvolume * volume * calcvolume * 0.353).toFixed(3)}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'brass'}</DataTable.Cell>
-                    </DataTable.Row>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Cement Weight</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Plaster Cost</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
                         {(
-                          (dryvolume * volume * calcvolume * cement * 1440) /
-                          1000 /
-                          (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
-                        )
-                          .toFixed(3)
-                          .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>ton</DataTable.Cell>
-                    </DataTable.Row>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Cement</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(
-                          (dryvolume * volume * calcvolume * cement * 0.353) /
-                          (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
-                        )
-                          .toFixed(3)
-                          .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'brass'}</DataTable.Cell>
-                    </DataTable.Row>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Sand</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(
-                          (dryvolume * volume * calcvolume * sand * 0.353) /
-                          (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
-                        )
-                          .toFixed(3)
-                          .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'brass'}</DataTable.Cell>
-                    </DataTable.Row>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Aggregate</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(
-                          (dryvolume *
-                            volume *
-                            calcvolume *
-                            aggregate *
-                            0.353) /
-                          (parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate))
-                        )
-                          .toFixed(3)
-                          .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'brass'}</DataTable.Cell>
-                    </DataTable.Row>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Water</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {cementratio *
-                          (
-                            (dryvolume * volume * calcvolume * cement * 1440) /
-                            (parseFloat(cement) +
-                              parseFloat(sand) +
-                              parseFloat(aggregate))
-                          )
-                            .toFixed(3)
-                            .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>Liter</DataTable.Cell>
-                    </DataTable.Row>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Cement Bags</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(
-                          (dryvolume * volume * calcvolume * cement * 1440) /
-                          ((parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate)) *
-                            cementbag)
-                        )
-                          .toFixed(3)
-                          .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>bags</DataTable.Cell>
-                    </DataTable.Row>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Cement Bag Cost</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(
-                          (dryvolume *
-                            volume *
-                            calcvolume *
-                            cement *
-                            1440 *
-                            cementbagprice) /
-                          ((parseFloat(cement) +
-                            parseFloat(sand) +
-                            parseFloat(aggregate)) *
-                            cementbag)
-                        )
-                          .toFixed(3)
-                          .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
-                      </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
-                    </DataTable.Row>
-
-                    <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Concrete Cost</DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {(
-                          volume *
-                          calcvolume *
+                          length*width*calclength*calcwidth *
                           concreteprice *
                           calcconcreteprice
                         ).toFixed(2)}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
                     </DataTable.Row>
+                  </DataTable>
+                ) : (
+                  <></>
+                )}
+                {toggle === 'brass' ? (
+                    <DataTable style={{backgroundColor: '#EFFFFD'}}>
+                    <DataTable.Header>
+                      <DataTable.Title sortDirection="descending">
+                        Material
+                      </DataTable.Title>
+                      <DataTable.Title numeric>Quantity</DataTable.Title>
+                      <DataTable.Title numeric>Unit</DataTable.Title>
+                    </DataTable.Header>
 
                     <DataTable.Row>
-                      <DataTable.Cell textStyle={{fontSize:10}}>Concrete Weight</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Mortar</DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
-                        {((volume * calcvolume * 2400) / 1000)
+                        {(volume * calcvolume*0.353).toFixed(3)}
+                      </DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'brass'}</DataTable.Cell>
+                    </DataTable.Row>
+
+                    <DataTable.Row>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Dry Mortar</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
+                        {(dryvolume * volume * calcvolume*0.353).toFixed(3)}
+                      </DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'brass'}</DataTable.Cell>
+                    </DataTable.Row>
+
+                    <DataTable.Row>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Cement Weight</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
+                        {(
+                          (dryvolume * volume * calcvolume * cement * 1440/1000) /
+                          (parseFloat(cement) +
+                            parseFloat(sand))
+                        )
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>ton</DataTable.Cell>
+                    </DataTable.Row>
+
+                    <DataTable.Row>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Cement</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
+                        {(
+                          (dryvolume * volume * calcvolume * cement*0.353) /
+                          (parseFloat(cement) +
+                            parseFloat(sand))
+                        )
+                          .toFixed(3)
+                          .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
+                      </DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'brass'}</DataTable.Cell>
+                    </DataTable.Row>
+
+                    <DataTable.Row>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Sand</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
+                        {(
+                          (dryvolume * volume * calcvolume * sand*0.353) /
+                          (parseFloat(cement) +
+                            parseFloat(sand) )
+                        )
+                          .toFixed(3)
+                          .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
+                      </DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'brass'}</DataTable.Cell>
+                    </DataTable.Row>
+
+                    <DataTable.Row>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Plaster Area</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
+                        {
+                          (calclength*length*width*calcwidth
+                            
+                          )
+                            .toFixed(3)
+                            .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
+                      </DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>{'m\u00B2'}</DataTable.Cell>
+                    </DataTable.Row>
+
+                    <DataTable.Row>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Cement Bags</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
+                        {(
+                          (dryvolume * volume * calcvolume * cement * 1440) /
+                          ((parseFloat(cement) +
+                            parseFloat(sand)) *
+                            cementbag *
+                            calccementbag)
+                        )
+                          .toFixed(3)
+                          .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
+                      </DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>bags</DataTable.Cell>
+                    </DataTable.Row>
+
+                    <DataTable.Row>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Cement Bag Cost</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
+                        {(
+                          (dryvolume *
+                            volume *
+                            calcvolume *
+                            cement *
+                            1440 *
+                            cementbagprice) /
+                          ((parseFloat(cement) +
+                            parseFloat(sand)) *
+                            cementbag)
+                        )
+                          .toFixed(3)
+                          .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
+                      </DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
+                    </DataTable.Row>
+
+                    <DataTable.Row>
+                      <DataTable.Cell textStyle={{fontSize:10}}>Plaster Cost</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>
+                        {(
+                          length*width*calclength*calcwidth *
+                          concreteprice *
+                          calcconcreteprice
+                        ).toFixed(2)}
+                      </DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
                     </DataTable.Row>
                   </DataTable>
                 ) : (
@@ -1097,7 +952,8 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'Cochin',
     fontSize: 22,
+    color:'#00ADB5',
     fontWeight: 'bold',
   },
 });
-export default Concrete2;
+export default Plaster1;

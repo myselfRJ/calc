@@ -40,14 +40,14 @@ const Bricks1 = ({route, navigation}) => {
 
   React.useEffect(() => {
     const numdata = (
-      (wallvolume * calcwallvolume) /
+      (wallvolume * calcwallvolume*aggregate) /
       ((parseFloat(length * calclength) + 0.01) *
         (parseFloat(width * calcwidth) + 0.01) *
         (parseFloat(thick * calcthick) + 0.01))
     ).toFixed(1);
     setNumBricks(numdata);
-    setVolume(wallvolume * calcwallvolume);
-    console.log('changed', calclength, length);
+    setVolume(wallvolume * calcwallvolume*aggregate);
+    console.log('changed', calclength, length,aggregate);
   }, [
     length,
     width,
@@ -404,7 +404,7 @@ const Bricks1 = ({route, navigation}) => {
 
                     <DataTable.Row>
                       <DataTable.Cell textStyle={{fontSize: 10}}>
-                        Dry Motor
+                        Dry Mortor
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                         {(
@@ -552,7 +552,7 @@ const Bricks1 = ({route, navigation}) => {
 
                   <DataTable.Row>
                     <DataTable.Cell textStyle={{fontSize: 10}}>
-                      Dry Motor
+                      Dry Mortor
                     </DataTable.Cell>
                     <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                       {(
@@ -700,7 +700,7 @@ const Bricks1 = ({route, navigation}) => {
  
                    <DataTable.Row>
                      <DataTable.Cell textStyle={{fontSize: 10}}>
-                       Dry Motor
+                       Dry Mortor
                      </DataTable.Cell>
                      <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                        {(
@@ -848,7 +848,7 @@ const Bricks1 = ({route, navigation}) => {
 
                   <DataTable.Row>
                     <DataTable.Cell textStyle={{fontSize: 10}}>
-                      Dry Motor
+                      Dry Mortor
                     </DataTable.Cell>
                     <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                       {(

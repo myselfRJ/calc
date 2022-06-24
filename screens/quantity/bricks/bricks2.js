@@ -48,13 +48,13 @@ const Bricks2 = ({route, navigation}) => {
 
   React.useEffect(() => {
     const numdata = (
-      (parseFloat(lengthW*widthW*thickW*calclengthW*calcthickW*calcwidthW)-parseFloat(subarea*calcsubarea*thickW*calcthickW)) /
+      (parseFloat(lengthW*widthW*thickW*calclengthW*calcthickW*calcwidthW*aggregate)-parseFloat(subarea*calcsubarea*thickW*calcthickW)) /
       ((parseFloat(length * calclength) + 0.01) *
         (parseFloat(width * calcwidth) + 0.01) *
         (parseFloat(thick * calcthick) + 0.01))
     ).toFixed(1);
     setNumBricks(numdata);
-    setWallVolume(parseFloat(lengthW*widthW*thickW*calclengthW*calcthickW*calcwidthW)-parseFloat(subarea*calcsubarea*thickW*calcthickW));
+    setWallVolume(parseFloat(lengthW*widthW*thickW*calclengthW*calcthickW*calcwidthW*aggregate)-parseFloat(subarea*calcsubarea*thickW*calcthickW));
     console.log('changed', calclengthW, lengthW);
   }, [
     length,
@@ -65,7 +65,7 @@ const Bricks2 = ({route, navigation}) => {
     calcthick,
     wallvolume,
     calcwallvolume,
-    lengthW,calclengthW,widthW,calcwidthW,thickW,calcthickW,subarea,calcsubarea
+    lengthW,calclengthW,widthW,calcwidthW,thickW,calcthickW,subarea,calcsubarea,aggregate
   ]);
   const [openA, setOpenA] = React.useState(false);
   const [openl, setOpenl] = React.useState(false);
@@ -453,7 +453,7 @@ const Bricks2 = ({route, navigation}) => {
 
                     <DataTable.Row>
                       <DataTable.Cell textStyle={{fontSize: 10}}>
-                        Dry Motor
+                        Dry Mortor
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                         {(
@@ -601,7 +601,7 @@ const Bricks2 = ({route, navigation}) => {
 
                   <DataTable.Row>
                     <DataTable.Cell textStyle={{fontSize: 10}}>
-                      Dry Motor
+                      Dry Mortor
                     </DataTable.Cell>
                     <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                       {(
@@ -749,7 +749,7 @@ const Bricks2 = ({route, navigation}) => {
  
                    <DataTable.Row>
                      <DataTable.Cell textStyle={{fontSize: 10}}>
-                       Dry Motor
+                       Dry Mortor
                      </DataTable.Cell>
                      <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                        {(
@@ -897,7 +897,7 @@ const Bricks2 = ({route, navigation}) => {
 
                   <DataTable.Row>
                     <DataTable.Cell textStyle={{fontSize: 10}}>
-                      Dry Motor
+                      Dry Mortor
                     </DataTable.Cell>
                     <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                       {(

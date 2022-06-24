@@ -22,15 +22,15 @@ import Share from 'react-native-share';
 
 const Blocks1 = ({route, navigation}) => {
   const viewShot = React.useRef();
-  const [calclength, setcalcLength] = React.useState('1');
-  const [calcwidth, setcalcWidth] = React.useState('1');
-  const [calcthick, setcalcThick] = React.useState('1');
+  const [calclength, setcalcLength] = React.useState('0.0254');
+  const [calcwidth, setcalcWidth] = React.useState('0.0254');
+  const [calcthick, setcalcThick] = React.useState('0.0254');
   const [length, setLength] = React.useState('5');
   const [width, setWidth] = React.useState('5');
   const [thick, setThick] = React.useState('5');
   const [calclengthW, setcalcLengthW] = React.useState('1');
   const [calcwidthW, setcalcWidthW] = React.useState('1');
-  const [calcthickW, setcalcThickW] = React.useState('1');
+  const [calcthickW, setcalcThickW] = React.useState('0.01');
   const [lengthW, setLengthW] = React.useState('5');
   const [widthW, setWidthW] = React.useState('5');
   const [thickW, setThickW] = React.useState('5');
@@ -48,13 +48,13 @@ const Blocks1 = ({route, navigation}) => {
 
   React.useEffect(() => {
     const numdata = (
-      (parseFloat(lengthW*widthW*thickW*calclengthW*calcthickW*calcwidthW)-parseFloat(subarea*calcsubarea*thickW*calcthickW)) /
+      (parseFloat(lengthW*widthW*thickW*calclengthW*calcthickW*calcwidthW*aggregate)-parseFloat(subarea*calcsubarea*thickW*calcthickW)) /
       ((parseFloat(length * calclength) + 0.025) *
         (parseFloat(width * calcwidth)) *
         (parseFloat(thick * calcthick) + 0.025))
     ).toFixed(1);
     setNumBlock(numdata);
-    setWallVolume(parseFloat(lengthW*widthW*thickW*calclengthW*calcthickW*calcwidthW)-parseFloat(subarea*calcsubarea*thickW*calcthickW));
+    setWallVolume(parseFloat(lengthW*widthW*thickW*calclengthW*calcthickW*calcwidthW*aggregate)-parseFloat(subarea*calcsubarea*thickW*calcthickW));
     console.log('changed', calclengthW, lengthW);
   }, [
     length,
@@ -65,7 +65,7 @@ const Blocks1 = ({route, navigation}) => {
     calcthick,
     wallvolume,
     calcwallvolume,
-    lengthW,calclengthW,widthW,calcwidthW,thickW,calcthickW,subarea,calcsubarea
+    lengthW,calclengthW,widthW,calcwidthW,thickW,calcthickW,subarea,calcsubarea,aggregate
   ]);
   const [openA, setOpenA] = React.useState(false);
   const [openl, setOpenl] = React.useState(false);
@@ -453,7 +453,7 @@ const Blocks1 = ({route, navigation}) => {
 
                     <DataTable.Row>
                       <DataTable.Cell textStyle={{fontSize: 10}}>
-                        Dry Motor
+                        Dry Mortor
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                         {(
@@ -601,7 +601,7 @@ const Blocks1 = ({route, navigation}) => {
 
                   <DataTable.Row>
                     <DataTable.Cell textStyle={{fontSize: 10}}>
-                      Dry Motor
+                      Dry Mortor
                     </DataTable.Cell>
                     <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                       {(
@@ -749,7 +749,7 @@ const Blocks1 = ({route, navigation}) => {
  
                    <DataTable.Row>
                      <DataTable.Cell textStyle={{fontSize: 10}}>
-                       Dry Motor
+                       Dry Mortor
                      </DataTable.Cell>
                      <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                        {(
@@ -897,7 +897,7 @@ const Blocks1 = ({route, navigation}) => {
 
                   <DataTable.Row>
                     <DataTable.Cell textStyle={{fontSize: 10}}>
-                      Dry Motor
+                      Dry Mortor
                     </DataTable.Cell>
                     <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                       {(

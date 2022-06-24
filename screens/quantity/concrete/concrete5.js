@@ -48,7 +48,7 @@ const Concrete5 = ({route, navigation}) => {
       0.785 *
         4 *
         width *
-        calcwidth *
+        calcwidth *quantity*
         (parseFloat(length * calclength * thick * calcthick) -
           parseFloat(thick * calcthick) * parseFloat(thick * calcthick)),
     );
@@ -64,7 +64,7 @@ const Concrete5 = ({route, navigation}) => {
       thick,
       calcthick,
     );
-  }, [length, width, thick, calclength, calcwidth, calcthick]);
+  }, [length, width, thick, calclength, calcwidth, calcthick,quantity]);
 
   const [openl, setOpenl] = React.useState(false);
   const [openw, setOpenw] = React.useState(false);
@@ -516,7 +516,7 @@ const Concrete5 = ({route, navigation}) => {
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
                       </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>$</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
                     </DataTable.Row>
 
                     <DataTable.Row>
@@ -529,7 +529,7 @@ const Concrete5 = ({route, navigation}) => {
                           calcconcreteprice
                         ).toFixed(2)}
                       </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>$</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
                     </DataTable.Row>
 
                     <DataTable.Row>
@@ -688,7 +688,7 @@ const Concrete5 = ({route, navigation}) => {
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
                       </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>$</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
                     </DataTable.Row>
 
                     <DataTable.Row>
@@ -701,7 +701,7 @@ const Concrete5 = ({route, navigation}) => {
                           calcconcreteprice
                         ).toFixed(2)}
                       </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>$</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
                     </DataTable.Row>
 
                     <DataTable.Row>
@@ -857,7 +857,7 @@ const Concrete5 = ({route, navigation}) => {
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
                       </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>$</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
                     </DataTable.Row>
 
                     <DataTable.Row>
@@ -868,7 +868,7 @@ const Concrete5 = ({route, navigation}) => {
                           concreteprice *
                           calcconcreteprice}
                       </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>$</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
                     </DataTable.Row>
 
                     <DataTable.Row>
@@ -1023,7 +1023,7 @@ const Concrete5 = ({route, navigation}) => {
                           .toFixed(3)
                           .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
                       </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>$</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
                     </DataTable.Row>
 
                     <DataTable.Row>
@@ -1036,7 +1036,7 @@ const Concrete5 = ({route, navigation}) => {
                           calcconcreteprice
                         ).toFixed(2)}
                       </DataTable.Cell>
-                      <DataTable.Cell textStyle={{fontSize:10}} numeric>$</DataTable.Cell>
+                      <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
                     </DataTable.Row>
 
                     <DataTable.Row>

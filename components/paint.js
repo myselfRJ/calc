@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import DropDownPicker from 'react-native-dropdown-picker';
-const AreaView = ({
+const PaintView = ({
   text,
   label,
   value,
@@ -11,13 +11,12 @@ const AreaView = ({
   open,
   setOpen,
   view,
-  left,right
+  right
 }) => {
   const [items, setItems] = React.useState([
-    {label: 'inch\u00B2', value: '0.000645'},
-    {label: 'm\u00B2', value: '1'},
-    {label: 'ft\u00B2', value: '0.0929'},
-    {label: 'yrd\u00B2', value: '0.836'},
+    {label: 'US galon', value: '3.785'},
+    {label: 'UK galon', value: '4.546'},
+    {label: 'liter', value: '1'}
   ]);
   return (
     <View
@@ -33,7 +32,6 @@ const AreaView = ({
           mode={'outlined'}
           style={{ fontSize: 10}}
           right={right ? <TextInput.Affix textStyle={{color:'#00ADB5',fontWeight:'700'}} text={right} /> : ''}
-          left={left ? <TextInput.Affix text={left} /> : ''}
           dense={true}
           activeOutlineColor="#00ADB5"
           keyboardType="numeric"
@@ -51,8 +49,8 @@ const AreaView = ({
           setOpen={setOpen}
           setValue={setValue}
           setItems={setItems}
-          placeholder={'m\u00B2'}
-          containerStyle={{width: 45}}
+          placeholder={'liter'}
+          containerStyle={{width: 65}}
           showArrowIcon={false}
           showTickIcon={false}
           listMode={'SCROLLVIEW'}
@@ -89,4 +87,4 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
 });
-export default AreaView;
+export default PaintView;

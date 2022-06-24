@@ -48,13 +48,13 @@ const Bricks3 = ({route, navigation}) => {
 
   React.useEffect(() => {
     const numdata = (
-        (parseFloat(0.785*lengthW*calclengthW*(parseFloat(widthW*widthW*calcwidthW*calcwidthW)-parseFloat((parseFloat(widthW*calcwidthW)-parseFloat(2*thickW*calcthickW))*(parseFloat(widthW*calcwidthW)-parseFloat(2*thickW*calcthickW)))))-parseFloat(subarea*calcsubarea*thickW*calcthickW)) /
+        (parseFloat(0.785*aggregate*lengthW*calclengthW*(parseFloat(widthW*widthW*calcwidthW*calcwidthW)-parseFloat((parseFloat(widthW*calcwidthW)-parseFloat(2*thickW*calcthickW))*(parseFloat(widthW*calcwidthW)-parseFloat(2*thickW*calcthickW)))))-parseFloat(subarea*calcsubarea*thickW*calcthickW)) /
       ((parseFloat(length * calclength) + 0.01) *
         (parseFloat(width * calcwidth) + 0.01) *
         (parseFloat(thick * calcthick) + 0.01))
     ).toFixed(1);
     setNumBricks(numdata);
-    setWallVolume(parseFloat(0.785*lengthW*calclengthW*(parseFloat(widthW*widthW*calcwidthW*calcwidthW)-parseFloat((parseFloat(widthW*calcwidthW)-parseFloat(2*thickW*calcthickW))*(parseFloat(widthW*calcwidthW)-parseFloat(2*thickW*calcthickW)))))-parseFloat(subarea*calcsubarea*thickW*calcthickW));
+    setWallVolume(parseFloat(0.785*aggregate*lengthW*calclengthW*(parseFloat(widthW*widthW*calcwidthW*calcwidthW)-parseFloat((parseFloat(widthW*calcwidthW)-parseFloat(2*thickW*calcthickW))*(parseFloat(widthW*calcwidthW)-parseFloat(2*thickW*calcthickW)))))-parseFloat(subarea*calcsubarea*thickW*calcthickW));
     console.log('changed', calclengthW, lengthW);
   }, [
     length,
@@ -65,7 +65,7 @@ const Bricks3 = ({route, navigation}) => {
     calcthick,
     wallvolume,
     calcwallvolume,
-    lengthW,calclengthW,widthW,calcwidthW,thickW,calcthickW,subarea,calcsubarea
+    lengthW,calclengthW,widthW,calcwidthW,thickW,calcthickW,subarea,calcsubarea,aggregate
   ]);
   const [openA, setOpenA] = React.useState(false);
   const [openl, setOpenl] = React.useState(false);
@@ -453,7 +453,7 @@ const Bricks3 = ({route, navigation}) => {
 
                     <DataTable.Row>
                       <DataTable.Cell textStyle={{fontSize: 10}}>
-                        Dry Motor
+                        Dry Mortor
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                         {(
@@ -601,7 +601,7 @@ const Bricks3 = ({route, navigation}) => {
 
                   <DataTable.Row>
                     <DataTable.Cell textStyle={{fontSize: 10}}>
-                      Dry Motor
+                      Dry Mortor
                     </DataTable.Cell>
                     <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                       {(
@@ -749,7 +749,7 @@ const Bricks3 = ({route, navigation}) => {
  
                    <DataTable.Row>
                      <DataTable.Cell textStyle={{fontSize: 10}}>
-                       Dry Motor
+                       Dry Mortor
                      </DataTable.Cell>
                      <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                        {(
@@ -897,7 +897,7 @@ const Bricks3 = ({route, navigation}) => {
 
                   <DataTable.Row>
                     <DataTable.Cell textStyle={{fontSize: 10}}>
-                      Dry Motor
+                      Dry Mortor
                     </DataTable.Cell>
                     <DataTable.Cell textStyle={{fontSize: 10}} numeric>
                       {(

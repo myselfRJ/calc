@@ -60,6 +60,12 @@ import Soil4 from './screens/quantity/soil/soil4';
 import Soil5 from './screens/quantity/soil/soiil5';
 import Elevation1 from './screens/quantity/elevation/elevation';
 import Helix1 from './screens/quantity/helix/helix1';
+import Plaster1 from './screens/quantity/plaster/plaster1';
+import Filling1 from './screens/quantity/filling/filling1';
+import Excavation1 from './screens/quantity/excavation/excavation';
+import Paint1 from './screens/quantity/paint/paint';
+import Slop1 from './screens/quantity/slopfilling/slopfilling';
+import Asphalt1 from './screens/quantity/asphalt/asphalt1';
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -319,6 +325,36 @@ const App: () => Node = () => {
           name="Helix Bar"
           component={Helix1}
           options={{title: 'Calculation of Helix Bar'}}
+        />
+        <Stack.Screen
+          name="Plaster"
+          component={Plaster1}
+          options={{title: 'Calculation of Plaster'}}
+        />
+        <Stack.Screen
+          name="Filling"
+          component={Filling1}
+          options={{title: 'Calculation of Bad Filling'}}
+        />
+        <Stack.Screen
+          name="Excavation"
+          component={Excavation1}
+          options={{title: 'Calculation of Bad Excavation'}}
+        />
+        <Stack.Screen
+          name="Paint"
+          component={Paint1}
+          options={{title: 'Calculation of Paint'}}
+        />
+        <Stack.Screen
+          name="Slop"
+          component={Slop1}
+          options={{title: 'Slop Fillng'}}
+        />
+        <Stack.Screen
+          name="Asphalt"
+          component={Asphalt1}
+          options={{title: 'Calculation of Asphalt'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
