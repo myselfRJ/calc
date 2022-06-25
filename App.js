@@ -66,6 +66,16 @@ import Excavation1 from './screens/quantity/excavation/excavation';
 import Paint1 from './screens/quantity/paint/paint';
 import Slop1 from './screens/quantity/slopfilling/slopfilling';
 import Asphalt1 from './screens/quantity/asphalt/asphalt1';
+import Conversion from './screens/conversion';
+import Distance from './screens/conversion/distance';
+import Area from './screens/conversion/area';
+import Volume from './screens/conversion/volume';
+import Weight from './screens/conversion/weight';
+import Time from './screens/conversion/time';
+import Pressure from './screens/conversion/pressure';
+import Speed from './screens/conversion/speed';
+import Fuel from './screens/conversion/fuel';
+import Frequency from './screens/conversion/frequency';
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -153,7 +163,7 @@ const App: () => Node = () => {
       case 'fifth':
         return <FifthRoute />;
       case 'sixth':
-        return <SixthRoute />;
+        return <Conversion />;
       default:
         return null;
     }
@@ -347,7 +357,7 @@ const App: () => Node = () => {
           options={{title: 'Calculation of Paint'}}
         />
         <Stack.Screen
-          name="Slop"
+          name="Slop Filling"
           component={Slop1}
           options={{title: 'Slop Fillng'}}
         />
@@ -355,6 +365,51 @@ const App: () => Node = () => {
           name="Asphalt"
           component={Asphalt1}
           options={{title: 'Calculation of Asphalt'}}
+        />
+         <Stack.Screen
+          name="Distance"
+          component={Distance}
+          options={{title: 'Distance Converter'}}
+        />
+        <Stack.Screen
+          name="Area"
+          component={Area}
+          options={{title: 'Area Converter'}}
+        />
+        <Stack.Screen
+          name="Volume"
+          component={Volume}
+          options={{title: 'Volume Converter'}}
+        />
+        <Stack.Screen
+          name="Weight"
+          component={Weight}
+          options={{title: 'Weight Converter'}}
+        />
+        <Stack.Screen
+          name="Time"
+          component={Time}
+          options={{title: 'Time Converter'}}
+        />
+        <Stack.Screen
+          name="Pressure"
+          component={Pressure}
+          options={{title: 'Pressure Converter'}}
+        />
+        <Stack.Screen
+          name="Speed"
+          component={Speed}
+          options={{title: 'Speed Converter'}}
+        />
+        <Stack.Screen
+          name="Fuel"
+          component={Fuel}
+          options={{title: 'Fuel Converter'}}
+        />
+        <Stack.Screen
+          name="Frequency"
+          component={Frequency}
+          options={{title: 'Frequency Converter'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

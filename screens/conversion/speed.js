@@ -17,22 +17,15 @@ import {
 import ViewShot from 'react-native-view-shot';
 import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
-import LengthView from '../../../components/length';
+import SpeedView from '../../components/speed';
 
-const Helix1 = ({route, navigation}) => {
+const Speed = ({route, navigation}) => {
   const viewShot = React.useRef();
-  const [height, setHeight] = React.useState('0');
-  const [dia, setDia] = React.useState('0');
-  const [pitch, setPitch] = React.useState('0');
-  const [calcheight, setcalcHeight] = React.useState('1');
-  const [calcdia, setcalcDia] = React.useState('1');
-  const [calcpitch, setcalcPitch] = React.useState('1');
+  const [speed, setSpeed] = React.useState('1');
+  const [calcspeed, setcalcSpeed] = React.useState('1');
   const [calculate, setCalculate] = React.useState(0);
 
   const [openh, setOpenH] = React.useState(false);
-  const [opend, setOpenD] = React.useState(false);
-  const [openp, setOpenP] = React.useState(false);
-
   //const {title} = route.params;
 
   const captureAndShareScreenshot = () => {
@@ -56,7 +49,7 @@ const Helix1 = ({route, navigation}) => {
     });
   };
   return (
-    <ScrollView style={{backgroundColor: '#E8F6EF', height: '100%'}}>
+    <ScrollView style={{backgroundColor: '#E8F6EF', speed: '100%'}}>
       <ViewShot
         style={styles.container}
         ref={viewShot}
@@ -68,23 +61,6 @@ const Helix1 = ({route, navigation}) => {
             backgroundColor: '#E8F6EF'
           }}>
           <View style={{width: '94%', alignItems: 'center'}}>
-            <TouchableOpacity
-              style={{...styles.card}}
-              onPress={() => console.warn('pressed')}>
-              <Image
-                style={{width: 50, height: 50}}
-                source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
-              />
-              <Text style={styles.text}>{'Helix Bar'}</Text>
-            </TouchableOpacity>
-            <Divider
-              style={{
-                borderWidth: 1,
-                width: '100%',
-                zIndex: -1,
-                marginBottom: 5,
-              }}
-            />
             <View
               style={{
                 display: 'flex',
@@ -98,37 +74,21 @@ const Helix1 = ({route, navigation}) => {
                   display: 'flex',
                   flexDirection: 'column',
                   width: '100%',
-                  justifyContent: 'space-between',
+                  justifyContent: 'center',
+                  alignItems:'center'
                 }}>
-                <LengthView
-                  label={'Height H'}
-                  value={calcheight}
-                  text={height}
+                    <Divider style={{width: '0%', marginTop: 5}} />
+                <SpeedView
+                  label={'Speed'}
+                  value={calcspeed}
+                  text={speed}
                   open={openh}
                   setOpen={setOpenH}
-                  setText={setHeight}
-                  setValue={setcalcHeight}
+                  setText={setSpeed}
+                  setValue={setcalcSpeed}
                 />
                 <Divider style={{width: '0%', marginTop: 5}} />
-               <LengthView
-                  label={'Diameter d'}
-                  value={calcdia}
-                  text={dia}
-                  open={opend}
-                  setOpen={setOpenD}
-                  setText={setDia}
-                  setValue={setcalcDia}
-                />
-                <Divider style={{width: '0%', marginTop: 5}} />
-                <LengthView
-                  label={'Pitch p'}
-                  value={calcpitch}
-                  text={pitch}
-                  open={openp}
-                  setOpen={setOpenP}
-                  setText={setPitch}
-                  setValue={setcalcPitch}
-                />
+  
               </View>
               <Divider style={{width: '150%', marginTop: 5}} />
 
@@ -155,15 +115,14 @@ const Helix1 = ({route, navigation}) => {
                   onPress={() => captureAndShareScreenshot()}>
                   Share
                 </Button>
-                <Button
+                {/* <Button
                   compact={true}
                   style={{backgroundColor: '#00ADB5'}}
                   icon="calculator"
                   mode="contained"
-                  onPress={() => {setCalculate(parseFloat(height*calcheight/(calcpitch*pitch))*(Math.sqrt(parseFloat(9.8596*dia*dia*calcdia*calcdia)+parseFloat(pitch*pitch*calcpitch*calcpitch))));
-                  }}>
+                  onPress={() => setCalculate()>
                   Calculate
-                </Button>
+                </Button> */}
                 <Button
                   compact={true}
                   style={{backgroundColor: '#6FDFDF'}}
@@ -178,7 +137,7 @@ const Helix1 = ({route, navigation}) => {
               />
               <Image
                 style={{width: '100%'}}
-                source={require('../../../resources/images/promo.png')}
+                source={require('../../resources/images/promo.png')}
               />
               <Divider
                 style={{width: '100%', marginTop: 10, marginBottom: 10}}
@@ -188,28 +147,55 @@ const Helix1 = ({route, navigation}) => {
                   display: 'flex',
                   flexDirection: 'row',
                   width: '100%',
-                  justifyContent: 'space-around',
+                  justifyContent: 'center',
+                  alignItems:'center'
                 }}>
                 <DataTable style={{backgroundColor: '#EFFFFD'}}>
                   <DataTable.Header>
-                    <DataTable.Title sortDirection="descending">
-                      Material
+                    <DataTable.Title style={{justifyContent:'center'}} textStyle={{fontSize: 16}} sortDirection="descending">
+                     Conversion Value
                     </DataTable.Title>
-                    <DataTable.Title numeric>Quantity</DataTable.Title>
-                    <DataTable.Title numeric>Unit</DataTable.Title>
+
                   </DataTable.Header>
 
                   <DataTable.Row>
-                    <DataTable.Cell textStyle={{fontSize: 10}}>
-                      Helix Cutting Length
-                    </DataTable.Cell>
-                    <DataTable.Cell textStyle={{fontSize: 10}} numeric>
-                      {(calculate)
-                        .toFixed(3)
+                    <DataTable.Cell textStyle={{fontSize: 16}} style={{justifyContent:'flex-end'}} >
+                      {(speed*calcspeed*0.27778)
+                        .toFixed(5)
                         .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
                     </DataTable.Cell>
-                    <DataTable.Cell textStyle={{fontSize: 10}} numeric>
-                      {'cm'}
+                    <DataTable.Cell textStyle={{fontSize: 16}}>
+                      {'   m/s'}
+                    </DataTable.Cell>
+                  </DataTable.Row>
+                  <DataTable.Row>
+                    <DataTable.Cell textStyle={{fontSize: 16}} style={{justifyContent:'flex-end'}} >
+                      {(speed*calcspeed*1)
+                        .toFixed(5)
+                        .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
+                    </DataTable.Cell>
+                    <DataTable.Cell textStyle={{fontSize: 16}}>
+                      {'   km/hr'}
+                    </DataTable.Cell>
+                  </DataTable.Row>
+                  <DataTable.Row>
+                    <DataTable.Cell textStyle={{fontSize: 16}} style={{justifyContent:'flex-end'}} >
+                      {(speed*calcspeed*0.62139)
+                        .toFixed(5)
+                        .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
+                    </DataTable.Cell>
+                    <DataTable.Cell textStyle={{fontSize: 16}}>
+                      {'   miles/hr'}
+                    </DataTable.Cell>
+                  </DataTable.Row>
+                  <DataTable.Row>
+                    <DataTable.Cell textStyle={{fontSize: 16}} style={{justifyContent:'flex-end'}} >
+                      {(speed*calcspeed*0.54)
+                        .toFixed(5)
+                        .replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')}
+                    </DataTable.Cell>
+                    <DataTable.Cell textStyle={{fontSize: 16}}>
+                      {'   knot'}
                     </DataTable.Cell>
                   </DataTable.Row>
                 </DataTable>
@@ -230,7 +216,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     padding: 10,
     width: '100%',
-    height: 90,
+    speed: 90,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -244,4 +230,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-export default Helix1;
+export default Speed;

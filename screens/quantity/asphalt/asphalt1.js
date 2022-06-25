@@ -284,7 +284,7 @@ const Asphalt1 = ({route, navigation}) => {
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
                         {(
                           volume *
-                          calcvolume *2.406
+                          calcvolume *2.322
                         ).toFixed(2)}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>metric ton</DataTable.Cell>
@@ -296,7 +296,7 @@ const Asphalt1 = ({route, navigation}) => {
                       {(
                           volume *
                           calcvolume *
-                          asphaltPrice *2.406
+                          asphaltPrice *2.322
                         ).toFixed(2)}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
@@ -327,7 +327,7 @@ const Asphalt1 = ({route, navigation}) => {
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
                         {(
                           volume *
-                          calcvolume *2.406
+                          calcvolume *2.322
                         ).toFixed(2)}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>metric ton</DataTable.Cell>
@@ -339,7 +339,7 @@ const Asphalt1 = ({route, navigation}) => {
                       {(
                           volume *
                           calcvolume *
-                          asphaltPrice *2.406
+                          asphaltPrice *2.322
                         ).toFixed(2)}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
@@ -370,7 +370,7 @@ const Asphalt1 = ({route, navigation}) => {
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
                         {(
                           volume *
-                          calcvolume *2.406
+                          calcvolume *2.322
                         ).toFixed(2)}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>metric ton</DataTable.Cell>
@@ -382,7 +382,7 @@ const Asphalt1 = ({route, navigation}) => {
                       {(
                           volume *
                           calcvolume *
-                          asphaltPrice *2.406
+                          asphaltPrice *2.322
                         ).toFixed(2)}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>
@@ -413,7 +413,7 @@ const Asphalt1 = ({route, navigation}) => {
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>
                         {(
                           volume *
-                          calcvolume *2.406
+                          calcvolume *2.322
                         ).toFixed(2)}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>metric ton</DataTable.Cell>
@@ -425,7 +425,7 @@ const Asphalt1 = ({route, navigation}) => {
                       {(
                           volume *
                           calcvolume *
-                          asphaltPrice *2.406
+                          asphaltPrice *2.322
                         ).toFixed(2)}
                       </DataTable.Cell>
                       <DataTable.Cell textStyle={{fontSize:10}} numeric>₹</DataTable.Cell>

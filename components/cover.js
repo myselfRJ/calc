@@ -2,8 +2,10 @@ import * as React from 'react';
 import {CardViewWithImage} from 'react-native-simple-card-view';
 import {TouchableOpacity, useColorScheme} from 'react-native';
 
+
 const Cover = props => {
   const scheme = useColorScheme();
+
   return (
     <TouchableOpacity
       style={[styles.card, styles.shadowProp]}
@@ -12,7 +14,8 @@ const Cover = props => {
       }}>
       <CardViewWithImage
         width={'100%'}
-        source={{uri: 'https://placeimg.com/640/480/nature'}}
+        imageWidth={'70%'}
+        source={props.uri}
         title={props.title}
         roundedImage={false}
         titleFontSize={16}
@@ -26,8 +29,8 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#E8F6EF',
     borderRadius: 8,
-    paddingVertical: 15,
-    paddingHorizontal: 15,
+    paddingVertical: 6,
+    paddingHorizontal: 6,
     width: '30%',
   },
   shadowProp: {
