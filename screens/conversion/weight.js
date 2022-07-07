@@ -79,7 +79,7 @@ const Weight = ({route, navigation}) => {
                 }}>
                     <Divider style={{width: '0%', marginTop: 5}} />
                 <WeightView
-                  label={'Distance'}
+                  label={'Weight'}
                   value={calcheight}
                   text={height}
                   open={openh}

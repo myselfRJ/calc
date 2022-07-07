@@ -79,7 +79,7 @@ const Area = ({route, navigation}) => {
                 }}>
                     <Divider style={{width: '0%', marginTop: 5}} />
                 <AreaView
-                  label={'Distance'}
+                  label={'Area'}
                   value={calcheight}
                   text={height}
                   open={openh}

@@ -79,7 +79,7 @@ const Time = ({route, navigation}) => {
                 }}>
                     <Divider style={{width: '0%', marginTop: 5}} />
                 <TimeView
-                  label={'Distance'}
+                  label={'Time'}
                   value={calctime}
                   text={time}
                   open={openh}

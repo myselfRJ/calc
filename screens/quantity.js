@@ -18,12 +18,12 @@ const Quantity = () => {
     {title: 'Paint' ,uri:require("../resources/images/paint.png")},
     {title: 'Slop Filling' ,uri:require("../resources/images/slop.png")},
     {title: 'Asphalt' ,uri:require("../resources/images/asphalt.png")},
-    {title: 'Tiles' },
-    {title: 'Terrazzo'},
-    {title: 'Floor Bricks'},
-    {title: 'Anti Termite'},
-    {title: 'Foam Work'},
-    {title: 'Water Tank'},
+    // {title: 'Tiles' },
+    // {title: 'Terrazzo'},
+    // {title: 'Floor Bricks'},
+    // {title: 'Anti Termite'},
+    // {title: 'Foam Work'},
+    // {title: 'Water Tank'},
   ];
   const renderItem = ({item}) => (
     <Cover title={item.title} uri={item.uri} navigation={navigation} />

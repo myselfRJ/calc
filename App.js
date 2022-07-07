@@ -76,6 +76,13 @@ import Pressure from './screens/conversion/pressure';
 import Speed from './screens/conversion/speed';
 import Fuel from './screens/conversion/fuel';
 import Frequency from './screens/conversion/frequency';
+import AreaView from './screens/area';
+import Circle1 from './screens/area/circle';
+import Square1 from './screens/area/square';
+import Rect1 from './screens/area/rect';
+import Triangle1 from './screens/area/triangle';
+import Trapezoid1 from './screens/area/trapezoid';
+import Ellipse1 from './screens/area/ellipse';
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -103,6 +110,7 @@ const Section = ({children, title}): Node => {
 };
 
 const App: () => Node = () => {
+  const layout = useWindowDimensions();
   useEffect(() => {
     SplashScreen.hide();
   }, []);
@@ -112,6 +120,7 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
   function HomeScreen({navigation}) {
+    
     return (
       <TouchableOpacity
         style={{
@@ -159,7 +168,7 @@ const App: () => Node = () => {
       case 'third':
         return <ThirdRoute />;
       case 'fourth':
-        return <FourthRoute />;
+        return <AreaView />;
       case 'fifth':
         return <FifthRoute />;
       case 'sixth':
@@ -182,22 +191,22 @@ const App: () => Node = () => {
       {...props}
       scrollEnabled
       indicatorStyle={styles.indicator}
-      style={styles.tabbar}
+      style={{...styles.tabbar,display:'flex',justifyContent:'center'}}
       labelStyle={styles.label}
       tabStyle={styles.tabStyle}
     />
   );
   const DemoScreen = ({navigation}) => {
-    const layout = useWindowDimensions();
+    
 
     const [index, setIndex] = React.useState(0);
 
     const [routes] = React.useState([
       {key: 'first', title: 'Quantity'},
-      {key: 'second', title: 'RCC'},
-      {key: 'third', title: 'Structure'},
+      // {key: 'second', title: 'RCC'},
+      // {key: 'third', title: 'Structure'},
       {key: 'fourth', title: 'Area'},
-      {key: 'fifth', title: 'Volume'},
+      // {key: 'fifth', title: 'Volume'},
       {key: 'sixth', title: 'Conversion'},
     ]);
     return (
@@ -206,7 +215,7 @@ const App: () => Node = () => {
         navigationState={{index, routes}}
         renderScene={renderScene}
         onIndexChange={setIndex}
-        initialLayout={{width: '50%'}}
+        initialLayout={{width: layout.width}}
         navigation={navigation}
       />
     );
@@ -410,6 +419,36 @@ const App: () => Node = () => {
           name="Frequency"
           component={Frequency}
           options={{title: 'Frequency Converter'}}
+        />
+        <Stack.Screen
+          name="Circle"
+          component={Circle1}
+          options={{title: 'Calculation of Circle Area'}}
+        />
+        <Stack.Screen
+          name="Square"
+          component={Square1}
+          options={{title: 'Calculation of Square Area'}}
+        />
+        <Stack.Screen
+          name="Rectangle"
+          component={Rect1}
+          options={{title: 'Calculation of Rectangle Area'}}
+        />
+        <Stack.Screen
+          name="Triangle"
+          component={Triangle1}
+          options={{title: 'Calculation of Triangle Area'}}
+        />
+        <Stack.Screen
+          name="Trapezoid"
+          component={Trapezoid1}
+          options={{title: 'Calculation of Trapezoid Area'}}
+        />
+        <Stack.Screen
+          name="Ellipse"
+          component={Ellipse1}
+          options={{title: 'Calculation of Ellipse Area'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
